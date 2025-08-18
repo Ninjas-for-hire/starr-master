@@ -10,6 +10,3 @@ if (!defined('ABSPATH')) {
 
 // Include ACF fields
 require_once get_template_directory() . '/includes/acf-fields.php';
-
-// Include theme updater
-require_once get_template_directory() . '/includes/theme-updater.php';
