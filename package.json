@@ -1,0 +1,12 @@
+{
+  "name": "star-master-theme",
+  "version": "1.0.0",
+  "scripts": {
+    "watch": "sass --watch assets/scss:assets/css --style compressed",
+    "build": "sass assets/scss:assets/css --style compressed",
+    "dev": "sass --watch assets/scss:assets/css --style expanded"
+  },
+  "devDependencies": {
+    "sass": "^1.69.0"
+  }
+}

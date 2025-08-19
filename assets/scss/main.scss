@@ -1,0 +1,9 @@
+/* Main SCSS File - Import all partials here */
+
+/* Global styles */
+@import 'global/variables';
+@import 'global/global';
+
+/* Components */
+@import 'components/header';
+@import 'components/hero';
