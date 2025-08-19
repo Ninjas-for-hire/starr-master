@@ -19,9 +19,12 @@ header {
             margin: 0 auto;
             width: 100%;
             text-align: center;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .left-menu,.right-menu {
+        .left-menu,
+        .right-menu {
             padding-top: 20px;
             display: flex;
             flex-direction: row;

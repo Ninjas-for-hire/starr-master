@@ -1,0 +1,41 @@
+.chef_section {
+
+  .chef_section_inner {
+    display: flex;
+    gap: 112px;
+
+    .left {
+      min-width: 698px;
+      width: 100%;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+    }
+
+    .right {
+      padding-top: 135px;
+
+      .chef_title {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .chef_content {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0;
+      }
+
+    }
+
+  }
+
+}
