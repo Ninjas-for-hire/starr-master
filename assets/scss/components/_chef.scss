@@ -2,11 +2,20 @@
 
   .chef_section_inner {
     display: flex;
-    gap: 112px;
+    flex-direction: column;
+    gap: 30px;
+
+    @media (min-width: $screen-sm) {
+      flex-direction: row;
+      gap: 112px;
+    }
 
     .left {
-      min-width: 698px;
       width: 100%;
+
+      @media (min-width: $screen-sm) {
+        min-width: 698px;
+      }
 
       img {
         width: 100%;
@@ -17,7 +26,10 @@
     }
 
     .right {
-      padding-top: 135px;
+
+      @media (min-width: $screen-sm) {
+        padding-top: 135px;
+      }
 
       .chef_title {
         font-weight: 500;

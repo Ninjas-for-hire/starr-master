@@ -3,11 +3,21 @@
 
   .cuisine_section_inner {
     display: flex;
-    flex-direction: row;
-    gap: 100px;
+    flex-direction: column;
+    gap: 30px;
+
+    @media (min-width: $screen-sm) {
+      flex-direction: row;
+      gap: 100px;
+    }
 
     .left {
       max-width: 529px;
+      order: 1;
+
+      @media (min-width: $screen-sm) {
+        order: 0;
+      }
 
       .cuisine_image {
         max-width: 529px;
@@ -24,10 +34,19 @@
     }
 
     .right {
+      order: 0;
+
+      @media (min-width: $screen-sm) {
+        order: 1;
+      }
 
       .content_section {
-        padding: 70px 0 100px 0;
         width: 100%;
+        padding: 0 0 30px 0;
+
+        @media (min-width: $screen-sm) {
+          padding: 70px 0 100px 0;
+        }
 
         .cuisine_title {
           font-weight: 500;

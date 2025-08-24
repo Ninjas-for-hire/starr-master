@@ -14,7 +14,7 @@ $footer_text_color = get_field('footer_text_color', 'option');
 <footer style="
         background-color: <?php echo $footer_bg_color ? $footer_bg_color : '#f8f8f8'; ?>;
         color: <?php echo $footer_text_color ? $footer_text_color : '#333333'; ?>;
-        ">
+        " class="footer">
 
     <div class="container">
 

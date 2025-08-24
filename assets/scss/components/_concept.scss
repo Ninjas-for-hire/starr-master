@@ -4,9 +4,11 @@
   .concept_section_inner {
     display: flex;
     flex-direction: column;
-    gap: 104px;
+    gap: 30px;
 
-
+    @media (min-width: $screen-sm) {
+      gap: 104px;
+    }
 
     .conc_image {
       img {
@@ -39,13 +41,27 @@
 
     .top {
       display: flex;
-      gap: 90px;
+      gap: 30px;
       align-items: center;
+      flex-direction: column;
+
+      @media (min-width: $screen-sm) {
+        flex-direction: row;
+        gap: 90px;
+      }
+
     }
 
     .bottom {
       display: flex;
-      gap: 90px;
+      gap: 30px;
+      align-items: center;
+      flex-direction: column;
+
+      @media (min-width: $screen-sm) {
+        flex-direction: row;
+        gap: 90px;
+      }
     }
 
     .concept_image_1 {
@@ -68,6 +84,11 @@
 
       img {
         position: relative;
+
+        @media (max-width: $screen-sm) {
+         top:unset !important;
+        }
+
       }
 
     }

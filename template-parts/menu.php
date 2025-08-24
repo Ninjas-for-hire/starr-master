@@ -13,7 +13,7 @@ $background_color = $args['background_color'];
     background-color: <?php echo $background_color ? $background_color : '#ffffff'; ?>;
     padding: <?php echo $padding ? $padding . 'px' : ''; ?> 0 <?php echo $padding ? $padding . 'px' : ''; ?> 0;
     ">
-
+    
     <div class="menu_section_inner">
 
             <?php if ($menu_tabs): ?>
