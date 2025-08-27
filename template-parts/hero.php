@@ -7,7 +7,7 @@
 $hero_image = $args['hero_image'];
 ?>
 
-<section class="hero_section">
+<section class="hero_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?> >
     <?php if ($hero_image): ?>
         <div class="hero_image">
             <img src="<?php echo esc_url($hero_image['url']); ?>" 

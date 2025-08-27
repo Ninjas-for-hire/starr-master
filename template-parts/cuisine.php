@@ -13,7 +13,7 @@ $padding = $args['padding'];
 $background_color = $args['background_color'];
 ?>
 
-<section class="cuisine_section" style="
+<section class="cuisine_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?> style="
     background-color: <?php echo $background_color ? $background_color : '#ffffff'; ?>;
     padding: <?php echo $padding ? $padding . 'px' : ''; ?> 0 <?php echo $padding ? $padding . 'px' : ''; ?> 0;
 ">
