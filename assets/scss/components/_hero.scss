@@ -2,6 +2,25 @@
 
   .hero_image {
 
+    @media (max-width: 768px) {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      height: calc(100vh - 147px);
+      object-fit: cover;
+    }
+
+  }
+
+  .hero_image_mobile {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+
     img {
       width: 100%;
       height: calc(100vh - 147px);

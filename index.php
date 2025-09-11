@@ -23,6 +23,8 @@
                     <?php get_template_part('template-parts/full-width-image', null, $component); ?>
                 <?php elseif ($component['acf_fc_layout'] == 'menu'): ?>
                     <?php get_template_part('template-parts/menu', null, $component); ?>
+                <?php elseif ($component['acf_fc_layout'] == 'html_code_block'): ?>
+                    <?php get_template_part('template-parts/html-code-block', null, $component); ?>
                 <?php endif; ?>
                 
             <?php endforeach; ?>

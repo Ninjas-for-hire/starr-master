@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?php bloginfo('description'); ?>">
     <?php wp_head(); ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
@@ -132,4 +133,22 @@ $right_menu = get_field('right_menu', 'option');
             });
         });
     });
+
+    jQuery(document).ready(function() {
+        // Add smooth scrolling to all anchor links with offset
+        jQuery('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+
+            var target = $(this.hash);
+            var offset = 40; // Adjust this value based on your header height
+
+            // Check if target exists
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top - offset
+                }, 800); // Animation duration in milliseconds
+            }
+        });
+    });
+
 </script>

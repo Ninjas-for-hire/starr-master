@@ -215,7 +215,7 @@ function output_acf_styling_css() {
         /* ===== TABLET STYLES (768px and up) ===== */
         @media (min-width: 768px) {
             /* Heading Copy - Tablet */
-            .concept_section .concept_section_inner .content .concept_title, .cuisine_section .cuisine_section_inner .right .content_section .cuisine_title,  .chef_section .chef_section_inner .right .chef_title  {
+            .concept_section .concept_section_inner .content .concept_title, .cuisine_section .cuisine_section_inner .right .content_section .cuisine_title,  .chef_section .chef_section_inner .right .chef_title, .html_code_section_inner h2  {
             <?php if (isset($heading_styles['tablet']['font_family']) && $heading_styles['tablet']['font_family']) : ?>
                 font-family: <?php echo esc_attr($heading_styles['tablet']['font_family']); ?>;
             <?php endif; ?>
@@ -228,7 +228,7 @@ function output_acf_styling_css() {
             }
 
             /* Body Copy - Tablet */
-            body, p, .body-text {
+            body, p, .body-text, .html_code_section_inner input, .html_code_section_inner label {
             <?php if (isset($body_styles['tablet']['font_family']) && $body_styles['tablet']['font_family']) : ?>
                 font-family: <?php echo esc_attr($body_styles['tablet']['font_family']); ?>;
             <?php endif; ?>
@@ -280,7 +280,7 @@ function output_acf_styling_css() {
             }
 
             /* Menu Tab - Tablet */
-            .menu_section .menu_tabs_nav .menu_tab_button {
+            .menu_section .menu_tabs_nav .menu_tab_button, #lead_submit {
             <?php if (isset($menu_tab_styles['tablet']['font_family']) && $menu_tab_styles['tablet']['font_family']) : ?>
                 font-family: <?php echo esc_attr($menu_tab_styles['tablet']['font_family']); ?>;
             <?php endif; ?>
@@ -387,7 +387,7 @@ function output_acf_styling_css() {
             }
 
             /* Menu Tab - Tablet */
-            .menu_section .menu_tabs_nav .menu_tab_button {
+            .menu_section .menu_tabs_nav .menu_tab_button, #lead_submit {
             <?php if (isset($menu_tab_styles['tablet']['font_family']) && $menu_tab_styles['tablet']['font_family']) : ?>
                 font-family: <?php echo esc_attr($menu_tab_styles['tablet']['font_family']); ?>;
             <?php endif; ?>
@@ -492,7 +492,7 @@ function output_acf_styling_css() {
         }
 
         /* Menu Tab - Mobile */
-        .menu_section .menu_tabs_nav .menu_tab_button {
+        .menu_section .menu_tabs_nav .menu_tab_button, #lead_submit {
         <?php if (isset($menu_tab_styles['mobile']['colour']) && $menu_tab_styles['mobile']['colour']) : ?>
             color: <?php echo esc_attr($menu_tab_styles['mobile']['colour']); ?>;
         <?php endif; ?>
