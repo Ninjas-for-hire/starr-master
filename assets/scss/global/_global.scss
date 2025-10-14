@@ -13,3 +13,30 @@ body {
   padding: 0 16px;
   width: 100%;
 }
+
+.hover_links {
+
+  a {
+    position: relative;
+    transition: 0.3s;
+
+    &:after {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      content: '';
+      width: 0;
+      height: 1px;
+      background-color: inherit;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      &:after {
+        width: 100%;
+      }
+    }
+
+  }
+
+}

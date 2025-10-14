@@ -10,6 +10,34 @@ footer {
 
   .inner_footer {
 
+    .social_links {
+      display: flex;
+      gap: 20px;
+
+      .social_link {
+        white-space: nowrap;
+      }
+
+    }
+
+    .company_links {
+      display: flex;
+      gap: 20px;
+
+      .company_link {
+        white-space: nowrap;
+      }
+
+    }
+
+    .company_links_row_2 {
+      margin-top: 20px;
+    }
+
+    .mailing_list_section {
+      margin-top: 20px;
+    }
+
     .footer_grid {
       display: flex;
       flex-direction: column;
@@ -24,6 +52,12 @@ footer {
 
       .footer_left_column {
           max-width: 463px;
+      }
+
+      .contact_item {
+        a {
+          text-transform: uppercase;
+        }
       }
 
     }

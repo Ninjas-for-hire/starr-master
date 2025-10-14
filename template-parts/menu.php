@@ -5,13 +5,11 @@
 
 // Get component data passed from index.php
 $menu_tabs = $args['menu_tabs'];
-$padding = $args['padding'];
-$background_color = $args['background_color'];
+
 ?>
 
 <section class="menu_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?> style="
-    background-color: <?php echo $background_color ? $background_color : '#ffffff'; ?>;
-    padding: <?php echo $padding ? $padding . 'px' : ''; ?> 0 <?php echo $padding ? $padding . 'px' : ''; ?> 0;
+
     ">
     
     <div class="menu_section_inner">
@@ -34,6 +32,10 @@ $background_color = $args['background_color'];
 
                         <div class="menu_tab_content <?php echo $index === 0 ? 'active' : ''; ?>"
                              id="tab-<?php echo $index; ?>">
+
+                            <?php if ($tab['tab_description']): ?>
+                                <div class="tab_description"><?php echo $tab['tab_description']; ?></div>
+                            <?php endif; ?>
 
                             <div class="menu_columns">
 
@@ -83,6 +85,15 @@ $background_color = $args['background_color'];
                                                                     </div>
                                                                 <?php endif; ?>
 
+
+                                                                <?php if ($item['description']): ?>
+
+                                                                    <?php if ($item['description']): ?>
+                                                                        <div class="description"><?php echo $item['description']; ?></div>
+                                                                    <?php endif; ?>
+
+                                                                <?php endif; ?>
+
                                                             </div>
 
                                                         <?php endforeach; ?>
@@ -96,62 +107,73 @@ $background_color = $args['background_color'];
                                 </div>
 
                                 <!-- Right Column -->
-                                <div class="menu_column right_column">
+
                                     <?php if ($tab['right_column_sections']): ?>
-                                        <?php foreach ($tab['right_column_sections'] as $section): ?>
+                                        <div class="menu_column right_column">
+                                                <?php foreach ($tab['right_column_sections'] as $section): ?>
 
-                                            <div class="menu_section_block">
+                                                    <div class="menu_section_block">
 
-                                                <?php if ($section['section_title']): ?>
-                                                    <h3 class="menu_section_title"><?php echo esc_html($section['section_title']); ?></h3>
-                                                <?php endif; ?>
+                                                        <?php if ($section['section_title']): ?>
+                                                            <h3 class="menu_section_title"><?php echo esc_html($section['section_title']); ?></h3>
+                                                        <?php endif; ?>
 
-                                                <?php if ($section['menu_items']): ?>
-                                                    <div class="menu_items_list">
-                                                        <?php foreach ($section['menu_items'] as $item): ?>
+                                                        <?php if ($section['menu_items']): ?>
+                                                            <div class="menu_items_list">
+                                                                <?php foreach ($section['menu_items'] as $item): ?>
 
-                                                            <div class="menu_item">
+                                                                    <div class="menu_item">
 
-                                                                <div class="menu_item_header">
-                                                                    <?php if ($item['title']): ?>
-                                                                        <h4 class="menu_item_title"><?php echo esc_html($item['title']); ?></h4>
-                                                                    <?php endif; ?>
-                                                                </div>
+                                                                        <div class="menu_item_header">
+                                                                            <?php if ($item['title']): ?>
+                                                                                <h4 class="menu_item_title"><?php echo esc_html($item['title']); ?></h4>
+                                                                            <?php endif; ?>
+                                                                        </div>
 
-                                                                <?php if ($item['ingredients']): ?>
-                                                                    <p class="menu_item_ingredients"><?php echo esc_html($item['ingredients']); ?>
-                                                                        <?php if ($item['price']): ?>
-                                                                            <span class="menu_item_price"><?php echo esc_html($item['price']); ?></span>
+                                                                        <?php if ($item['ingredients']): ?>
+                                                                            <p class="menu_item_ingredients"><?php echo esc_html($item['ingredients']); ?>
+                                                                                <?php if ($item['price']): ?>
+                                                                                    <span class="menu_item_price"><?php echo esc_html($item['price']); ?></span>
+                                                                                <?php endif; ?>
+                                                                            </p>
                                                                         <?php endif; ?>
-                                                                    </p>
-                                                                <?php endif; ?>
 
-                                                                <?php if ($item['extras']): ?>
-                                                                    <div class="menu_item_extras">
-                                                                        <?php foreach ($item['extras'] as $extra): ?>
-                                                                            <div class="menu_extra">
-                                                                                <?php if ($extra['ingredient']): ?>
-                                                                                    <span class="extra_ingredient">| + <?php echo esc_html($extra['ingredient']); ?></span>
-                                                                                <?php endif; ?>
-                                                                                <?php if ($extra['price']): ?>
-                                                                                    <span class="extra_price"><?php echo esc_html($extra['price']); ?></span>
-                                                                                <?php endif; ?>
+                                                                        <?php if ($item['extras']): ?>
+                                                                            <div class="menu_item_extras">
+                                                                                <?php foreach ($item['extras'] as $extra): ?>
+                                                                                    <div class="menu_extra">
+                                                                                        <?php if ($extra['ingredient']): ?>
+                                                                                            <span class="extra_ingredient">| + <?php echo esc_html($extra['ingredient']); ?></span>
+                                                                                        <?php endif; ?>
+                                                                                        <?php if ($extra['price']): ?>
+                                                                                            <span class="extra_price"><?php echo esc_html($extra['price']); ?></span>
+                                                                                        <?php endif; ?>
+                                                                                    </div>
+                                                                                <?php endforeach; ?>
                                                                             </div>
-                                                                        <?php endforeach; ?>
+                                                                        <?php endif; ?>
+
+
+                                                                        <?php if ($item['description']): ?>
+
+                                                                            <?php if ($item['description']): ?>
+                                                                                <div class="description"><?php echo $item['description']; ?></div>
+                                                                            <?php endif; ?>
+
+                                                                        <?php endif; ?>
+
                                                                     </div>
-                                                                <?php endif; ?>
 
+                                                                <?php endforeach; ?>
                                                             </div>
+                                                        <?php endif; ?>
 
-                                                        <?php endforeach; ?>
                                                     </div>
-                                                <?php endif; ?>
 
-                                            </div>
-
-                                        <?php endforeach; ?>
+                                                <?php endforeach; ?>
+                                        </div>
                                     <?php endif; ?>
-                                </div>
+
 
                             </div>
 
@@ -167,20 +189,29 @@ $background_color = $args['background_color'];
     <!-- JavaScript for tab functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const tabButtons = document.querySelectorAll('.menu_tab_button');
-            const tabContents = document.querySelectorAll('.menu_tab_content');
+            // Find all menu sections on the page
+            const menuSections = document.querySelectorAll('.menu_section');
 
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetTab = this.getAttribute('data-tab');
+            // Initialize tabs for each menu section independently
+            menuSections.forEach(function(menuSection) {
+                const tabButtons = menuSection.querySelectorAll('.menu_tab_button');
+                const tabContents = menuSection.querySelectorAll('.menu_tab_content');
 
-                    // Remove active class from all buttons and contents
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const targetTab = this.getAttribute('data-tab');
 
-                    // Add active class to clicked button and corresponding content
-                    this.classList.add('active');
-                    document.getElementById(targetTab).classList.add('active');
+                        // Remove active class from buttons and contents ONLY within this menu section
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        tabContents.forEach(content => content.classList.remove('active'));
+
+                        // Add active class to clicked button and corresponding content
+                        this.classList.add('active');
+                        const targetContent = menuSection.querySelector('#' + targetTab);
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        }
+                    });
                 });
             });
         });

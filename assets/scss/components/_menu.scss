@@ -102,14 +102,19 @@
     &.left_column {
       position: relative;
 
-      &:after {
+    }
+
+    &.right_column {
+      position: relative;
+
+      &:before {
         content: none;
         height: 100%;
         width: 1px;
         background-color: black;
         position: absolute;
         top: 0;
-        right: -90px;
+        left: -90px;
 
         @media (min-width: $screen-sm) {
           content: '';
@@ -117,10 +122,6 @@
 
       }
 
-    }
-
-    &.right_column {
-      // Right column specific styles if needed
     }
   }
 
@@ -245,7 +246,15 @@
         }
       }
     }
+
+    .description a {
+      color: unset;
+    }
   }
+}
+
+.tab_description a {
+  color: unset;
 }
 
 // Fade in animation
@@ -277,11 +286,17 @@
       }
     }
 
+
+
     .menu_columns {
       grid-template-columns: 1fr 1fr;
       gap: 40px;
     }
   }
+}
+
+.tab_description {
+  margin-bottom: 40px;
 }
 
 // High contrast mode support

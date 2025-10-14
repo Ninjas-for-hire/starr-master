@@ -11,20 +11,21 @@ if (!defined('ABSPATH')) {
 // Add ACF Options Page
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(array(
-        'page_title' => 'Theme Settings',
-        'menu_title' => 'Theme Settings',
-        'menu_slug' => 'theme-settings',
+        'page_title' => 'Global Settings',
+        'menu_title' => 'Global Settings',
+        'menu_slug' => 'global-settings',
         'capability' => 'edit_posts',
         'icon_url' => 'dashicons-admin-customizer',
     ));
 }
 
-// Add Header Tab with Logo Field
+// Global Settings Field Group with Tabs
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
-        'key' => 'group_header_settings',
-        'title' => 'Header Settings',
+        'key' => 'group_global_settings',
+        'title' => 'Global Settings',
         'fields' => array(
+            // HEADER TAB
             array(
                 'key' => 'field_header_tab',
                 'label' => 'Header',
@@ -90,28 +91,8 @@ if (function_exists('acf_add_local_field_group')) {
                 'layout' => 'table',
                 'button_label' => 'Add Menu Item',
             ),
-        ),
-        'location' => array(
-            array(
-                array(
-                    'param' => 'options_page',
-                    'operator' => '==',
-                    'value' => 'theme-settings',
-                ),
-            ),
-        ),
-        'menu_order' => 0,
-        'position' => 'normal',
-        'style' => 'default',
-    ));
 
-    // Add Footer Tab
-    // Update your existing Footer Settings ACF group with these fields:
-
-    acf_add_local_field_group(array(
-        'key' => 'group_footer_settings',
-        'title' => 'Footer Settings',
-        'fields' => array(
+            // FOOTER TAB
             array(
                 'key' => 'field_footer_tab',
                 'label' => 'Footer',
@@ -409,42 +390,24 @@ if (function_exists('acf_add_local_field_group')) {
             ),
 
             // Footer styling options
-            array(
-                'key' => 'field_footer_background_color',
-                'label' => 'Footer Background Color',
-                'name' => 'footer_background_color',
-                'type' => 'color_picker',
-                'instructions' => 'Choose the footer background color',
-                'default_value' => '#f8f8f8',
-            ),
-            array(
-                'key' => 'field_footer_text_color',
-                'label' => 'Footer Text Color',
-                'name' => 'footer_text_color',
-                'type' => 'color_picker',
-                'instructions' => 'Choose the footer text color',
-                'default_value' => '#333333',
-            ),
-        ),
-        'location' => array(
-            array(
-                array(
-                    'param' => 'options_page',
-                    'operator' => '==',
-                    'value' => 'theme-settings',
-                ),
-            ),
-        ),
-        'menu_order' => 1,
-        'position' => 'normal',
-        'style' => 'default',
-    ));
+//            array(
+//                'key' => 'field_footer_background_color',
+//                'label' => 'Footer Background Color',
+//                'name' => 'footer_background_color',
+//                'type' => 'color_picker',
+//                'instructions' => 'Choose the footer background color',
+//                'default_value' => '#f8f8f8',
+//            ),
+//            array(
+//                'key' => 'field_footer_text_color',
+//                'label' => 'Footer Text Color',
+//                'name' => 'footer_text_color',
+//                'type' => 'color_picker',
+//                'instructions' => 'Choose the footer text color',
+//                'default_value' => '#333333',
+//            ),
 
-    // Add Styling Tab
-    acf_add_local_field_group(array(
-        'key' => 'group_styling_settings',
-        'title' => 'Styling Settings',
-        'fields' => array(
+            // STYLING TAB
             array(
                 'key' => 'field_styling_tab',
                 'label' => 'Styling',
@@ -453,7 +416,24 @@ if (function_exists('acf_add_local_field_group')) {
                 'placement' => 'top',
             ),
 
-            // Heading Copy Styles
+            // Styling Group containing all typography settings
+            array(
+                'key' => 'field_styling_group',
+                'label' => 'Typography Settings',
+                'name' => 'styling_settings',
+                'type' => 'group',
+                'instructions' => 'Configure all typography and styling options',
+                'sub_fields' => array(
+                    // Heading Copy Styles Sub-tab
+                    array(
+                        'key' => 'field_heading_copy_subtab',
+                        'label' => 'Heading Copy Styles',
+                        'name' => '',
+                        'type' => 'tab',
+                        'placement' => 'left',
+                    ),
+
+                    // Heading Copy Styles
             array(
                 'key' => 'field_heading_copy_styles',
                 'label' => 'Heading Copy Styles',
@@ -461,6 +441,34 @@ if (function_exists('acf_add_local_field_group')) {
                 'type' => 'group',
                 'instructions' => 'Configure heading typography styles',
                 'sub_fields' => array(
+                    array(
+                        'key' => 'field_heading_copy_styling',
+                        'label' => 'Styling',
+                        'name' => 'styling',
+                        'type' => 'group',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_heading_mobile_font_family',
+                                'label' => 'Font Family',
+                                'name' => 'font_family',
+                                'type' => 'select',
+                                'choices' => array(
+                                    'Arial, sans-serif' => 'Arial',
+                                    'lora,sans-serif' => 'Lora',
+'akzidenz-grotesk-next,sans-serif' => 'Grotesk'
+                                ),
+                                'default_value' => 'Arial, sans-serif',
+                            ),
+                            array(
+                                'key' => 'field_body_head_mobile_colour',
+                                'label' => 'Colour',
+                                'name' => 'colour',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the menu text color',
+                                'default_value' => '#333333',
+                            ),
+                        ),
+                    ),
                     array(
                         'key' => 'field_heading_desktop',
                         'label' => 'Desktop',
@@ -482,17 +490,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'type' => 'text',
                                 'instructions' => 'e.g., 1.2, 38px',
                                 'default_value' => '1.2',
-                            ),
-                            array(
-                                'key' => 'field_heading_desktop_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
                             ),
                         ),
                     ),
@@ -518,17 +515,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.2, 34px',
                                 'default_value' => '1.2',
                             ),
-                            array(
-                                'key' => 'field_heading_tablet_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
                     array(
@@ -553,20 +539,18 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.2, 29px',
                                 'default_value' => '1.2',
                             ),
-                            array(
-                                'key' => 'field_heading_mobile_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
                 ),
+            ),
+
+            // Body Copy Styles Sub-tab
+            array(
+                'key' => 'field_body_copy_subtab',
+                'label' => 'Body Copy Styles',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'left',
             ),
 
             // Body Copy Styles
@@ -577,6 +561,34 @@ if (function_exists('acf_add_local_field_group')) {
                 'type' => 'group',
                 'instructions' => 'Configure body text typography styles',
                 'sub_fields' => array(
+                    array(
+                        'key' => 'field_body_copy_styling',
+                        'label' => 'Styling',
+                        'name' => 'styling',
+                        'type' => 'group',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_body_mobile_font_family',
+                                'label' => 'Font Family',
+                                'name' => 'font_family',
+                                'type' => 'select',
+                                'choices' => array(
+                                    'Arial, sans-serif' => 'Arial',
+                                    'lora,sans-serif' => 'Lora',
+'akzidenz-grotesk-next,sans-serif' => 'Grotesk'
+                                ),
+                                'default_value' => 'Arial, sans-serif',
+                            ),
+                            array(
+                                'key' => 'field_body_mobile_colour',
+                                'label' => 'Colour',
+                                'name' => 'colour',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the menu text color',
+                                'default_value' => '#333333',
+                            ),
+                        ),
+                    ),
                     array(
                         'key' => 'field_body_desktop',
                         'label' => 'Desktop',
@@ -598,17 +610,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'type' => 'text',
                                 'instructions' => 'e.g., 1.5, 24px',
                                 'default_value' => '1.5',
-                            ),
-                            array(
-                                'key' => 'field_body_desktop_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
                             ),
                         ),
                     ),
@@ -634,17 +635,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.5, 23px',
                                 'default_value' => '1.5',
                             ),
-                            array(
-                                'key' => 'field_body_tablet_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
                     array(
@@ -669,20 +659,18 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.5, 21px',
                                 'default_value' => '1.5',
                             ),
-                            array(
-                                'key' => 'field_body_mobile_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
                 ),
+            ),
+
+            // Main Menu Styles Sub-tab
+            array(
+                'key' => 'field_main_menu_subtab',
+                'label' => 'Main Menu Styles',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'left',
             ),
 
             // Main Menu Styles
@@ -693,6 +681,42 @@ if (function_exists('acf_add_local_field_group')) {
                 'type' => 'group',
                 'instructions' => 'Configure main menu typography styles',
                 'sub_fields' => array(
+                    array(
+                        'key' => 'field_main_menu_styling',
+                        'label' => 'Styling',
+                        'name' => 'styling',
+                        'type' => 'group',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_main_menu_mobile_font_family',
+                                'label' => 'Font Family',
+                                'name' => 'font_family',
+                                'type' => 'select',
+                                'choices' => array(
+                                    'Arial, sans-serif' => 'Arial',
+                                    'lora,sans-serif' => 'Lora',
+'akzidenz-grotesk-next,sans-serif' => 'Grotesk'
+                                ),
+                                'default_value' => 'Arial, sans-serif',
+                            ),
+                            array(
+                                'key' => 'field_main_menu_mobile_colour',
+                                'label' => 'Colour',
+                                'name' => 'colour',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the menu text color',
+                                'default_value' => '#333333',
+                            ),
+                            array(
+                                'key' => 'field_main_menu_mobile_hover_color',
+                                'label' => 'Hover Color',
+                                'name' => 'hover_color',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the menu hover color',
+                                'default_value' => '#666666',
+                            ),
+                        ),
+                    ),
                     array(
                         'key' => 'field_main_menu_desktop',
                         'label' => 'Desktop',
@@ -714,17 +738,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'type' => 'text',
                                 'instructions' => 'e.g., 1.2, 19px',
                                 'default_value' => '1.2',
-                            ),
-                            array(
-                                'key' => 'field_main_menu_desktop_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
                             ),
                         ),
                     ),
@@ -750,17 +763,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.2, 18px',
                                 'default_value' => '1.2',
                             ),
-                            array(
-                                'key' => 'field_main_menu_tablet_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
                     array(
@@ -769,14 +771,6 @@ if (function_exists('acf_add_local_field_group')) {
                         'name' => 'mobile',
                         'type' => 'group',
                         'sub_fields' => array(
-                            array(
-                                'key' => 'field_main_menu_mobile_colour',
-                                'label' => 'Colour',
-                                'name' => 'colour',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the menu text color',
-                                'default_value' => '#333333',
-                            ),
                             array(
                                 'key' => 'field_main_menu_mobile_font_size',
                                 'label' => 'Font Size',
@@ -793,28 +787,18 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.2, 17px',
                                 'default_value' => '1.2',
                             ),
-                            array(
-                                'key' => 'field_main_menu_mobile_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
-                            array(
-                                'key' => 'field_main_menu_mobile_hover_color',
-                                'label' => 'Hover Color',
-                                'name' => 'hover_color',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the menu hover color',
-                                'default_value' => '#666666',
-                            ),
                         ),
                     ),
                 ),
+            ),
+
+            // Footer Headings Sub-tab
+            array(
+                'key' => 'field_footer_headings_subtab',
+                'label' => 'Footer Headings',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'left',
             ),
 
             // Footer Headings
@@ -825,6 +809,42 @@ if (function_exists('acf_add_local_field_group')) {
                 'type' => 'group',
                 'instructions' => 'Configure footer heading typography styles',
                 'sub_fields' => array(
+                    array(
+                        'key' => 'field_footer_headings_styling',
+                        'label' => 'Styling',
+                        'name' => 'styling',
+                        'type' => 'group',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_footer_headings_mobile_font_family',
+                                'label' => 'Font Family',
+                                'name' => 'font_family',
+                                'type' => 'select',
+                                'choices' => array(
+                                    'Arial, sans-serif' => 'Arial',
+                                    'lora,sans-serif' => 'Lora',
+'akzidenz-grotesk-next,sans-serif' => 'Grotesk'
+                                ),
+                                'default_value' => 'Arial, sans-serif',
+                            ),
+                            array(
+                                'key' => 'field_footer_headings_mobile_colour',
+                                'label' => 'Colour',
+                                'name' => 'colour',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the footer heading color',
+                                'default_value' => '#333333',
+                            ),
+                            array(
+                                'key' => 'field_footer_headings_mobile_hover_color',
+                                'label' => 'Hover Color',
+                                'name' => 'hover_color',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the footer heading hover color',
+                                'default_value' => '#666666',
+                            ),
+                        ),
+                    ),
                     array(
                         'key' => 'field_footer_headings_desktop',
                         'label' => 'Desktop',
@@ -846,17 +866,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'type' => 'text',
                                 'instructions' => 'e.g., 1.3, 23px',
                                 'default_value' => '1.3',
-                            ),
-                            array(
-                                'key' => 'field_footer_headings_desktop_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
                             ),
                         ),
                     ),
@@ -882,17 +891,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.3, 22px',
                                 'default_value' => '1.3',
                             ),
-                            array(
-                                'key' => 'field_footer_headings_tablet_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
                     array(
@@ -901,14 +899,6 @@ if (function_exists('acf_add_local_field_group')) {
                         'name' => 'mobile',
                         'type' => 'group',
                         'sub_fields' => array(
-                            array(
-                                'key' => 'field_footer_headings_mobile_colour',
-                                'label' => 'Colour',
-                                'name' => 'colour',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the footer heading color',
-                                'default_value' => '#333333',
-                            ),
                             array(
                                 'key' => 'field_footer_headings_mobile_font_size',
                                 'label' => 'Font Size',
@@ -925,28 +915,18 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.3, 21px',
                                 'default_value' => '1.3',
                             ),
-                            array(
-                                'key' => 'field_footer_headings_mobile_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
-                            array(
-                                'key' => 'field_footer_headings_mobile_hover_color',
-                                'label' => 'Hover Color',
-                                'name' => 'hover_color',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the footer heading hover color',
-                                'default_value' => '#666666',
-                            ),
                         ),
                     ),
                 ),
+            ),
+
+            // Footer Copy Sub-tab
+            array(
+                'key' => 'field_footer_copy_subtab',
+                'label' => 'Footer Copy',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'left',
             ),
 
             // Footer Copy
@@ -957,6 +937,42 @@ if (function_exists('acf_add_local_field_group')) {
                 'type' => 'group',
                 'instructions' => 'Configure footer copy typography styles',
                 'sub_fields' => array(
+                    array(
+                        'key' => 'field_footer_copy_styling',
+                        'label' => 'Styling',
+                        'name' => 'styling',
+                        'type' => 'group',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_footer_copy_mobile_font_family',
+                                'label' => 'Font Family',
+                                'name' => 'font_family',
+                                'type' => 'select',
+                                'choices' => array(
+                                    'Arial, sans-serif' => 'Arial',
+                                    'lora,sans-serif' => 'Lora',
+'akzidenz-grotesk-next,sans-serif' => 'Grotesk'
+                                ),
+                                'default_value' => 'Arial, sans-serif',
+                            ),
+                            array(
+                                'key' => 'field_footer_copy_mobile_colour',
+                                'label' => 'Colour',
+                                'name' => 'colour',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the footer copy color',
+                                'default_value' => '#666666',
+                            ),
+                            array(
+                                'key' => 'field_footer_copy_mobile_hover_color',
+                                'label' => 'Hover Color',
+                                'name' => 'hover_color',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the footer copy hover color',
+                                'default_value' => '#333333',
+                            ),
+                        ),
+                    ),
                     array(
                         'key' => 'field_footer_copy_desktop',
                         'label' => 'Desktop',
@@ -978,17 +994,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'type' => 'text',
                                 'instructions' => 'e.g., 1.4, 20px',
                                 'default_value' => '1.4',
-                            ),
-                            array(
-                                'key' => 'field_footer_copy_desktop_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
                             ),
                         ),
                     ),
@@ -1014,17 +1019,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.4, 18px',
                                 'default_value' => '1.4',
                             ),
-                            array(
-                                'key' => 'field_footer_copy_tablet_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
                     array(
@@ -1033,14 +1027,6 @@ if (function_exists('acf_add_local_field_group')) {
                         'name' => 'mobile',
                         'type' => 'group',
                         'sub_fields' => array(
-                            array(
-                                'key' => 'field_footer_copy_mobile_colour',
-                                'label' => 'Colour',
-                                'name' => 'colour',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the footer copy color',
-                                'default_value' => '#666666',
-                            ),
                             array(
                                 'key' => 'field_footer_copy_mobile_font_size',
                                 'label' => 'Font Size',
@@ -1057,28 +1043,18 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.4, 17px',
                                 'default_value' => '1.4',
                             ),
-                            array(
-                                'key' => 'field_footer_copy_mobile_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
-                            array(
-                                'key' => 'field_footer_copy_mobile_hover_color',
-                                'label' => 'Hover Color',
-                                'name' => 'hover_color',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the footer copy hover color',
-                                'default_value' => '#333333',
-                            ),
                         ),
                     ),
                 ),
+            ),
+
+            // Menu Tab Sub-tab
+            array(
+                'key' => 'field_menu_tab_subtab',
+                'label' => 'Menu Tab',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'left',
             ),
 
             // Menu Tab
@@ -1089,6 +1065,50 @@ if (function_exists('acf_add_local_field_group')) {
                 'type' => 'group',
                 'instructions' => 'Configure menu tab typography styles',
                 'sub_fields' => array(
+                    array(
+                        'key' => 'field_menu_tab_styling',
+                        'label' => 'Styling',
+                        'name' => 'styling',
+                        'type' => 'group',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_menu_tab_mobile_font_family',
+                                'label' => 'Font Family',
+                                'name' => 'font_family',
+                                'type' => 'select',
+                                'choices' => array(
+                                    'Arial, sans-serif' => 'Arial',
+                                    'lora,sans-serif' => 'Lora',
+'akzidenz-grotesk-next,sans-serif' => 'Grotesk'
+                                ),
+                                'default_value' => 'Arial, sans-serif',
+                            ),
+                            array(
+                                'key' => 'field_menu_tab_mobile_colour',
+                                'label' => 'Colour',
+                                'name' => 'colour',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the menu tab color',
+                                'default_value' => '#333333',
+                            ),
+                            array(
+                                'key' => 'field_menu_tab_mobile_hover_color',
+                                'label' => 'Hover Color',
+                                'name' => 'hover_color',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the menu tab hover color',
+                                'default_value' => '#666666',
+                            ),
+                            array(
+                                'key' => 'field_menu_tab_mobile_bg_hover_colour',
+                                'label' => 'Bg Hover Colour',
+                                'name' => 'bg_hover_colour',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the menu tab background hover color',
+                                'default_value' => '#f0f0f0',
+                            ),
+                        ),
+                    ),
                     array(
                         'key' => 'field_menu_tab_desktop',
                         'label' => 'Desktop',
@@ -1110,17 +1130,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'type' => 'text',
                                 'instructions' => 'e.g., 1.2, 19px',
                                 'default_value' => '1.2',
-                            ),
-                            array(
-                                'key' => 'field_menu_tab_desktop_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
                             ),
                         ),
                     ),
@@ -1146,17 +1155,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.2, 18px',
                                 'default_value' => '1.2',
                             ),
-                            array(
-                                'key' => 'field_menu_tab_tablet_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
                     array(
@@ -1165,14 +1163,6 @@ if (function_exists('acf_add_local_field_group')) {
                         'name' => 'mobile',
                         'type' => 'group',
                         'sub_fields' => array(
-                            array(
-                                'key' => 'field_menu_tab_mobile_colour',
-                                'label' => 'Colour',
-                                'name' => 'colour',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the menu tab color',
-                                'default_value' => '#333333',
-                            ),
                             array(
                                 'key' => 'field_menu_tab_mobile_font_size',
                                 'label' => 'Font Size',
@@ -1189,36 +1179,18 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.2, 17px',
                                 'default_value' => '1.2',
                             ),
-                            array(
-                                'key' => 'field_menu_tab_mobile_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
-                            array(
-                                'key' => 'field_menu_tab_mobile_hover_color',
-                                'label' => 'Hover Color',
-                                'name' => 'hover_color',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the menu tab hover color',
-                                'default_value' => '#666666',
-                            ),
-                            array(
-                                'key' => 'field_menu_tab_mobile_bg_hover_colour',
-                                'label' => 'Bg Hover Colour',
-                                'name' => 'bg_hover_colour',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the menu tab background hover color',
-                                'default_value' => '#f0f0f0',
-                            ),
                         ),
                     ),
                 ),
+            ),
+
+            // Menu Item Heading Sub-tab
+            array(
+                'key' => 'field_menu_item_heading_subtab',
+                'label' => 'Menu Item Heading',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'left',
             ),
 
             // Menu Item Heading
@@ -1229,6 +1201,34 @@ if (function_exists('acf_add_local_field_group')) {
                 'type' => 'group',
                 'instructions' => 'Configure menu item heading typography styles',
                 'sub_fields' => array(
+                    array(
+                        'key' => 'field_menu_item_heading_styling',
+                        'label' => 'Styling',
+                        'name' => 'styling',
+                        'type' => 'group',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_menu_item_heading_mobile_font_family',
+                                'label' => 'Font Family',
+                                'name' => 'font_family',
+                                'type' => 'select',
+                                'choices' => array(
+                                    'Arial, sans-serif' => 'Arial',
+                                    'lora,sans-serif' => 'Lora',
+'akzidenz-grotesk-next,sans-serif' => 'Grotesk'
+                                ),
+                                'default_value' => 'Georgia, serif',
+                            ),
+                            array(
+                                'key' => 'field_menu_item_heading_mobile_colour',
+                                'label' => 'Colour',
+                                'name' => 'colour',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the menu item heading color',
+                                'default_value' => '#333333',
+                            ),
+                        ),
+                    ),
                     array(
                         'key' => 'field_menu_item_heading_desktop',
                         'label' => 'Desktop',
@@ -1250,17 +1250,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'type' => 'text',
                                 'instructions' => 'e.g., 1.3, 23px',
                                 'default_value' => '1.3',
-                            ),
-                            array(
-                                'key' => 'field_menu_item_heading_desktop_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Georgia, serif',
                             ),
                         ),
                     ),
@@ -1286,17 +1275,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.3, 22px',
                                 'default_value' => '1.3',
                             ),
-                            array(
-                                'key' => 'field_menu_item_heading_tablet_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Georgia, serif',
-                            ),
                         ),
                     ),
                     array(
@@ -1305,14 +1283,6 @@ if (function_exists('acf_add_local_field_group')) {
                         'name' => 'mobile',
                         'type' => 'group',
                         'sub_fields' => array(
-                            array(
-                                'key' => 'field_menu_item_heading_mobile_colour',
-                                'label' => 'Colour',
-                                'name' => 'colour',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the menu item heading color',
-                                'default_value' => '#333333',
-                            ),
                             array(
                                 'key' => 'field_menu_item_heading_mobile_font_size',
                                 'label' => 'Font Size',
@@ -1329,20 +1299,18 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.3, 21px',
                                 'default_value' => '1.3',
                             ),
-                            array(
-                                'key' => 'field_menu_item_heading_mobile_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Georgia, serif',
-                            ),
                         ),
                     ),
                 ),
+            ),
+
+            // Menu Item Body Sub-tab
+            array(
+                'key' => 'field_menu_item_body_subtab',
+                'label' => 'Menu Item Body',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'left',
             ),
 
             // Menu Item Body
@@ -1353,6 +1321,34 @@ if (function_exists('acf_add_local_field_group')) {
                 'type' => 'group',
                 'instructions' => 'Configure menu item body typography styles',
                 'sub_fields' => array(
+                    array(
+                        'key' => 'field_menu_item_body_styling',
+                        'label' => 'Styling',
+                        'name' => 'styling',
+                        'type' => 'group',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_menu_item_body_mobile_font_family',
+                                'label' => 'Font Family',
+                                'name' => 'font_family',
+                                'type' => 'select',
+                                'choices' => array(
+                                    'Arial, sans-serif' => 'Arial',
+                                    'lora,sans-serif' => 'Lora',
+'akzidenz-grotesk-next,sans-serif' => 'Grotesk'
+                                ),
+                                'default_value' => 'Arial, sans-serif',
+                            ),
+                            array(
+                                'key' => 'field_menu_item_body_mobile_colour',
+                                'label' => 'Colour',
+                                'name' => 'colour',
+                                'type' => 'color_picker',
+                                'instructions' => 'Choose the menu item body color',
+                                'default_value' => '#666666',
+                            ),
+                        ),
+                    ),
                     array(
                         'key' => 'field_menu_item_body_desktop',
                         'label' => 'Desktop',
@@ -1374,17 +1370,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'type' => 'text',
                                 'instructions' => 'e.g., 1.4, 20px',
                                 'default_value' => '1.4',
-                            ),
-                            array(
-                                'key' => 'field_menu_item_body_desktop_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
                             ),
                         ),
                     ),
@@ -1410,17 +1395,6 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.4, 18px',
                                 'default_value' => '1.4',
                             ),
-                            array(
-                                'key' => 'field_menu_item_body_tablet_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
                     array(
@@ -1429,14 +1403,6 @@ if (function_exists('acf_add_local_field_group')) {
                         'name' => 'mobile',
                         'type' => 'group',
                         'sub_fields' => array(
-                            array(
-                                'key' => 'field_menu_item_body_mobile_colour',
-                                'label' => 'Colour',
-                                'name' => 'colour',
-                                'type' => 'color_picker',
-                                'instructions' => 'Choose the menu item body color',
-                                'default_value' => '#666666',
-                            ),
                             array(
                                 'key' => 'field_menu_item_body_mobile_font_size',
                                 'label' => 'Font Size',
@@ -1453,19 +1419,10 @@ if (function_exists('acf_add_local_field_group')) {
                                 'instructions' => 'e.g., 1.4, 17px',
                                 'default_value' => '1.4',
                             ),
-                            array(
-                                'key' => 'field_menu_item_body_mobile_font_family',
-                                'label' => 'Font Family',
-                                'name' => 'font_family',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'Arial, sans-serif' => 'Arial',
-                                    'Georgia, serif' => 'Georgia',
-                                ),
-                                'default_value' => 'Arial, sans-serif',
-                            ),
                         ),
                     ),
+                ),
+            ),
                 ),
             ),
         ),
@@ -1474,11 +1431,11 @@ if (function_exists('acf_add_local_field_group')) {
                 array(
                     'param' => 'options_page',
                     'operator' => '==',
-                    'value' => 'theme-settings',
+                    'value' => 'global-settings',
                 ),
             ),
         ),
-        'menu_order' => 2,
+        'menu_order' => 0,
         'position' => 'normal',
         'style' => 'default',
     ));
@@ -2133,6 +2090,15 @@ if (function_exists('acf_add_local_field_group')) {
                                     'type' => 'text',
                                     'instructions' => 'Enter tab name (e.g., DINNER, LUNCH)',
                                     'required' => 1,
+                                ),array(
+                                    'key' => 'field_tab_description',
+                                    'label' => 'Tab Description',
+                                    'name' => 'tab_description',
+                                    'type' => 'wysiwyg',
+                                    'instructions' => 'Enter the Tab Description',
+                                    'toolbar' => 'full',
+                                    'media_upload' => 1,
+                                    'delay' => 0,
                                 ),
                                 array(
                                     'key' => 'field_left_column_sections',
@@ -2143,7 +2109,7 @@ if (function_exists('acf_add_local_field_group')) {
                                     'sub_fields' => array(
                                         array(
                                             'key' => 'field_left_section_title',
-                                            'label' => 'Section Title',
+                                            'label' => 'Left Section Title',
                                             'name' => 'section_title',
                                             'type' => 'text',
                                             'instructions' => 'Enter section title (e.g., Hors d\'oeuvres)',
@@ -2168,7 +2134,7 @@ if (function_exists('acf_add_local_field_group')) {
                                                     'label' => 'Ingredients',
                                                     'name' => 'ingredients',
                                                     'type' => 'textarea',
-                                                    'instructions' => 'Enter item ingredients/description',
+                                                    'instructions' => 'Enter item ingredients / description',
                                                     'rows' => 2,
                                                 ),
                                                 array(
@@ -2205,6 +2171,18 @@ if (function_exists('acf_add_local_field_group')) {
                                                     'layout' => 'table',
                                                     'button_label' => 'Add Extra',
                                                 ),
+                                                array(
+                                                    'key' => 'field_left_description_field',
+                                                    'label' => 'Description',
+                                                    'name' => 'description',
+                                                    'type' => 'wysiwyg',
+                                                    'instructions' => 'Enter your content here if you dont want to add the individual line items',
+                                                    'default_value' => '',
+                                                    'tabs' => 'all',
+                                                    'toolbar' => 'full',
+                                                    'media_upload' => 1,
+                                                    'delay' => 0,
+                                                ),
                                             ),
                                             'min' => 0,
                                             'max' => 20,
@@ -2226,7 +2204,7 @@ if (function_exists('acf_add_local_field_group')) {
                                     'sub_fields' => array(
                                         array(
                                             'key' => 'field_right_section_title',
-                                            'label' => 'Section Title',
+                                            'label' => 'Right Section Title',
                                             'name' => 'section_title',
                                             'type' => 'text',
                                             'instructions' => 'Enter section title (e.g., Plats)',
@@ -2251,7 +2229,7 @@ if (function_exists('acf_add_local_field_group')) {
                                                     'label' => 'Ingredients',
                                                     'name' => 'ingredients',
                                                     'type' => 'textarea',
-                                                    'instructions' => 'Enter item ingredients/description',
+                                                    'instructions' => 'Enter item ingredients / description',
                                                     'rows' => 2,
                                                 ),
                                                 array(
@@ -2287,6 +2265,18 @@ if (function_exists('acf_add_local_field_group')) {
                                                     'max' => 10,
                                                     'layout' => 'table',
                                                     'button_label' => 'Add Extra',
+                                                ),
+                                                array(
+                                                    'key' => 'field_right_description_field',
+                                                    'label' => 'Description',
+                                                    'name' => 'description',
+                                                    'type' => 'wysiwyg',
+                                                    'instructions' => 'Enter your content here if you dont want to add the individual line items',
+                                                    'default_value' => '',
+                                                    'tabs' => 'all',
+                                                    'toolbar' => 'full',
+                                                    'media_upload' => 1,
+                                                    'delay' => 0,
                                                 ),
                                             ),
                                             'min' => 0,
@@ -2344,6 +2334,18 @@ if (function_exists('acf_add_local_field_group')) {
                             'name' => 'title',
                             'type' => 'text',
                             'instructions' => 'Enter the section title (optional)',
+                        ),
+                        array(
+                            'key' => 'field_form_code_block_content',
+                            'label' => 'Content',
+                            'name' => 'content',
+                            'type' => 'wysiwyg',
+                            'instructions' => 'Enter the section content',
+                            'default_value' => '',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                            'delay' => 0,
                         ),
                         array(
                             'key' => 'field_html_code_block_content',

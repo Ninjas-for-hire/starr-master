@@ -50,14 +50,14 @@ add_action('wp_enqueue_scripts', 'star_enqueue_styles');
  */
 function output_acf_styling_css() {
     // Get all styling options from ACF
-    $heading_styles = get_field('heading_copy_styles', 'option');
-    $body_styles = get_field('body_copy_styles', 'option');
-    $main_menu_styles = get_field('main_menu_styles', 'option');
-    $footer_headings_styles = get_field('footer_headings_styles', 'option');
-    $footer_copy_styles = get_field('footer_copy_styles', 'option');
-    $menu_tab_styles = get_field('menu_tab_styles', 'option');
-    $menu_item_heading_styles = get_field('menu_item_heading_styles', 'option');
-    $menu_item_body_styles = get_field('menu_item_body_styles', 'option');
+    $heading_styles = get_field('styling_settings_heading_copy_styles', 'option');
+    $body_styles = get_field('styling_settings_body_copy_styles', 'option');
+    $main_menu_styles = get_field('styling_settings_main_menu_styles', 'option');
+    $footer_headings_styles = get_field('styling_settings_footer_headings_styles', 'option');
+    $footer_copy_styles = get_field('styling_settings_footer_copy_styles', 'option');
+    $menu_tab_styles = get_field('styling_settings_menu_tab_styles', 'option');
+    $menu_item_heading_styles = get_field('styling_settings_menu_item_heading_styles', 'option');
+    $menu_item_body_styles = get_field('styling_settings_menu_item_body_styles', 'option');
 
     ?>
     <style>
@@ -65,8 +65,8 @@ function output_acf_styling_css() {
 
         /* ===== HEADING COPY STYLES ===== */
         .concept_section .concept_section_inner .content .concept_title, .cuisine_section .cuisine_section_inner .right .content_section .cuisine_title,  .chef_section .chef_section_inner .right .chef_title  {
-        <?php if (isset($heading_styles['mobile']['font_family']) && $heading_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($heading_styles['mobile']['font_family']); ?>;
+        <?php if (isset($heading_styles['styling']['font_family']) && $heading_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($heading_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($heading_styles['mobile']['font_size']) && $heading_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($heading_styles['mobile']['font_size']); ?>;
@@ -74,12 +74,20 @@ function output_acf_styling_css() {
         <?php if (isset($heading_styles['mobile']['line_height']) && $heading_styles['mobile']['line_height']) : ?>
             line-height: <?php echo esc_attr($heading_styles['mobile']['line_height']); ?>;
         <?php endif; ?>
+        <?php if (isset($heading_styles['styling']['colour']) && $heading_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($heading_styles['styling']['colour']); ?>;
+        <?php endif; ?>
         }
+
+
 
         /* ===== BODY COPY STYLES ===== */
         body, p, .body-text {
-        <?php if (isset($body_styles['mobile']['font_family']) && $body_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($body_styles['mobile']['font_family']); ?>;
+        <?php if (isset($body_styles['styling']['font_family']) && $body_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($body_styles['styling']['font_family']); ?>;
+        <?php endif; ?>
+        <?php if (isset($body_styles['styling']['colour']) && $body_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($body_styles['styling']['colour']); ?>;
         <?php endif; ?>
         <?php if (isset($body_styles['mobile']['font_size']) && $body_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($body_styles['mobile']['font_size']); ?>;
@@ -90,12 +98,19 @@ function output_acf_styling_css() {
         }
 
         /* ===== MAIN MENU STYLES ===== */
-        header .inner_header .left-menu a, header .inner_header .right-menu a {
-        <?php if (isset($main_menu_styles['mobile']['colour']) && $main_menu_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($main_menu_styles['mobile']['colour']); ?>;
+
+        header .inner_header a:after {
+        <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+            background-color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($main_menu_styles['mobile']['font_family']) && $main_menu_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($main_menu_styles['mobile']['font_family']); ?>;
+        }
+
+        header .inner_header .left-menu a, header .inner_header .right-menu a {
+        <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
+        <?php endif; ?>
+        <?php if (isset($main_menu_styles['styling']['font_family']) && $main_menu_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($main_menu_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($main_menu_styles['mobile']['font_size']) && $main_menu_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($main_menu_styles['mobile']['font_size']); ?>;
@@ -106,18 +121,18 @@ function output_acf_styling_css() {
         }
 
         header .inner_header .left-menu a:hover, header .inner_header .right-menu a:hover {
-        <?php if (isset($main_menu_styles['mobile']['hover_color']) && $main_menu_styles['mobile']['hover_color']) : ?>
-            color: <?php echo esc_attr($main_menu_styles['mobile']['hover_color']); ?>;
+        <?php if (isset($main_menu_styles['styling']['hover_color']) && $main_menu_styles['styling']['hover_color']) : ?>
+            color: <?php echo esc_attr($main_menu_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
         }
 
         /* ===== FOOTER HEADINGS STYLES ===== */
         .footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6, .footer-heading {
-        <?php if (isset($footer_headings_styles['mobile']['colour']) && $footer_headings_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($footer_headings_styles['mobile']['colour']); ?>;
+        <?php if (isset($footer_headings_styles['styling']['colour']) && $footer_headings_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($footer_headings_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($footer_headings_styles['mobile']['font_family']) && $footer_headings_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($footer_headings_styles['mobile']['font_family']); ?>;
+        <?php if (isset($footer_headings_styles['styling']['font_family']) && $footer_headings_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($footer_headings_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($footer_headings_styles['mobile']['font_size']) && $footer_headings_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($footer_headings_styles['mobile']['font_size']); ?>;
@@ -125,21 +140,22 @@ function output_acf_styling_css() {
         <?php if (isset($footer_headings_styles['mobile']['line_height']) && $footer_headings_styles['mobile']['line_height']) : ?>
             line-height: <?php echo esc_attr($footer_headings_styles['mobile']['line_height']); ?>;
         <?php endif; ?>
+            margin-top: 20px;
         }
 
         .footer h1:hover, .footer h2:hover, .footer h3:hover, .footer h4:hover, .footer h5:hover, .footer h6:hover, .footer-heading:hover {
-        <?php if (isset($footer_headings_styles['mobile']['hover_color']) && $footer_headings_styles['mobile']['hover_color']) : ?>
-            color: <?php echo esc_attr($footer_headings_styles['mobile']['hover_color']); ?>;
+        <?php if (isset($footer_headings_styles['styling']['hover_color']) && $footer_headings_styles['styling']['hover_color']) : ?>
+            color: <?php echo esc_attr($footer_headings_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
         }
 
         /* ===== FOOTER COPY STYLES ===== */
         .footer p, .footer-text, .footer-copy {
-        <?php if (isset($footer_copy_styles['mobile']['colour']) && $footer_copy_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($footer_copy_styles['mobile']['colour']); ?>;
+        <?php if (isset($footer_copy_styles['styling']['colour']) && $footer_copy_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($footer_copy_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($footer_copy_styles['mobile']['font_family']) && $footer_copy_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($footer_copy_styles['mobile']['font_family']); ?>;
+        <?php if (isset($footer_copy_styles['styling']['font_family']) && $footer_copy_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($footer_copy_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($footer_copy_styles['mobile']['font_size']) && $footer_copy_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($footer_copy_styles['mobile']['font_size']); ?>;
@@ -150,18 +166,18 @@ function output_acf_styling_css() {
         }
 
         .footer a:hover {
-        <?php if (isset($footer_copy_styles['mobile']['hover_color']) && $footer_copy_styles['mobile']['hover_color']) : ?>
-            color: <?php echo esc_attr($footer_copy_styles['mobile']['hover_color']); ?>;
+        <?php if (isset($footer_copy_styles['styling']['hover_color']) && $footer_copy_styles['styling']['hover_color']) : ?>
+            color: <?php echo esc_attr($footer_copy_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
         }
 
         /* ===== MENU TAB STYLES ===== */
-        .menu_section .menu_tabs_nav .menu_tab_button {
-        <?php if (isset($menu_tab_styles['mobile']['colour']) && $menu_tab_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($menu_tab_styles['mobile']['colour']); ?>;
+        .menu_section .menu_tabs_nav .menu_tab_button, .html_code_section_inner button{
+        <?php if (isset($menu_tab_styles['styling']['colour']) && $menu_tab_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($menu_tab_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_tab_styles['mobile']['font_family']) && $menu_tab_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($menu_tab_styles['mobile']['font_family']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['font_family']) && $menu_tab_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($menu_tab_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($menu_tab_styles['mobile']['font_size']) && $menu_tab_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($menu_tab_styles['mobile']['font_size']); ?>;
@@ -171,22 +187,22 @@ function output_acf_styling_css() {
         <?php endif; ?>
         }
 
-        .menu-tab:hover, .menu-tabs a:hover, .tab-navigation a:hover {
-        <?php if (isset($menu_tab_styles['mobile']['hover_color']) && $menu_tab_styles['mobile']['hover_color']) : ?>
-            color: <?php echo esc_attr($menu_tab_styles['mobile']['hover_color']); ?>;
+        .menu-tab:hover, .menu-tabs a:hover, .tab-navigation a:hover, .html_code_section_inner button:hover {
+        <?php if (isset($menu_tab_styles['styling']['hover_color']) && $menu_tab_styles['styling']['hover_color']) : ?>
+            color: <?php echo esc_attr($menu_tab_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_tab_styles['mobile']['bg_hover_colour']) && $menu_tab_styles['mobile']['bg_hover_colour']) : ?>
-            background-color: <?php echo esc_attr($menu_tab_styles['mobile']['bg_hover_colour']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['bg_hover_colour']) && $menu_tab_styles['styling']['bg_hover_colour']) : ?>
+            background-color: <?php echo esc_attr($menu_tab_styles['styling']['bg_hover_colour']); ?>;
         <?php endif; ?>
         }
 
         /* ===== MENU ITEM HEADING STYLES ===== */
         .menu_section .menu_items_list .menu_item .menu_item_header .menu_item_title, .menu_section_title, .menu_item_price {
-        <?php if (isset($menu_item_heading_styles['mobile']['colour']) && $menu_item_heading_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($menu_item_heading_styles['mobile']['colour']); ?>;
+        <?php if (isset($menu_item_heading_styles['styling']['colour']) && $menu_item_heading_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($menu_item_heading_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_item_heading_styles['mobile']['font_family']) && $menu_item_heading_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($menu_item_heading_styles['mobile']['font_family']); ?>;
+        <?php if (isset($menu_item_heading_styles['styling']['font_family']) && $menu_item_heading_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($menu_item_heading_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($menu_item_heading_styles['mobile']['font_size']) && $menu_item_heading_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($menu_item_heading_styles['mobile']['font_size']); ?>;
@@ -198,11 +214,11 @@ function output_acf_styling_css() {
 
         /* ===== MENU ITEM BODY STYLES ===== */
         .menu_item_ingredients {
-        <?php if (isset($menu_item_body_styles['mobile']['colour']) && $menu_item_body_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($menu_item_body_styles['mobile']['colour']); ?>;
+        <?php if (isset($menu_item_body_styles['styling']['colour']) && $menu_item_body_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($menu_item_body_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_item_body_styles['mobile']['font_family']) && $menu_item_body_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($menu_item_body_styles['mobile']['font_family']); ?>;
+        <?php if (isset($menu_item_body_styles['styling']['font_family']) && $menu_item_body_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($menu_item_body_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($menu_item_body_styles['mobile']['font_size']) && $menu_item_body_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($menu_item_body_styles['mobile']['font_size']); ?>;
@@ -423,11 +439,11 @@ function output_acf_styling_css() {
             <?php if (isset($menu_item_body_styles['tablet']['line_height']) && $menu_item_body_styles['tablet']['line_height']) : ?>
                 line-height: <?php echo esc_attr($menu_item_body_styles['tablet']['line_height']); ?>;
             <?php endif; ?>
-            }<?php if (isset($main_menu_styles['mobile']['colour']) && $main_menu_styles['mobile']['colour']) : ?>
-                                                                                                               color: <?php echo esc_attr($main_menu_styles['mobile']['colour']); ?>;
+            }<?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+                                                                                                               color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($main_menu_styles['mobile']['font_family']) && $main_menu_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($main_menu_styles['mobile']['font_family']); ?>;
+        <?php if (isset($main_menu_styles['styling']['font_family']) && $main_menu_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($main_menu_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($main_menu_styles['mobile']['font_size']) && $main_menu_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($main_menu_styles['mobile']['font_size']); ?>;
@@ -438,18 +454,18 @@ function output_acf_styling_css() {
         }
 
         .main-menu a:hover, .header-menu a:hover, nav a:hover {
-        <?php if (isset($main_menu_styles['mobile']['hover_color']) && $main_menu_styles['mobile']['hover_color']) : ?>
-            color: <?php echo esc_attr($main_menu_styles['mobile']['hover_color']); ?>;
+        <?php if (isset($main_menu_styles['styling']['hover_color']) && $main_menu_styles['styling']['hover_color']) : ?>
+            color: <?php echo esc_attr($main_menu_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
         }
 
         /* Footer Headings - Mobile */
         .footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6, .footer-heading {
-        <?php if (isset($footer_headings_styles['mobile']['colour']) && $footer_headings_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($footer_headings_styles['mobile']['colour']); ?>;
+        <?php if (isset($footer_headings_styles['styling']['colour']) && $footer_headings_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($footer_headings_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($footer_headings_styles['mobile']['font_family']) && $footer_headings_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($footer_headings_styles['mobile']['font_family']); ?>;
+        <?php if (isset($footer_headings_styles['styling']['font_family']) && $footer_headings_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($footer_headings_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($footer_headings_styles['mobile']['font_size']) && $footer_headings_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($footer_headings_styles['mobile']['font_size']); ?>;
@@ -460,18 +476,18 @@ function output_acf_styling_css() {
         }
 
         .footer h1:hover, .footer h2:hover, .footer h3:hover, .footer h4:hover, .footer h5:hover, .footer h6:hover, .footer-heading:hover {
-        <?php if (isset($footer_headings_styles['mobile']['hover_color']) && $footer_headings_styles['mobile']['hover_color']) : ?>
-            color: <?php echo esc_attr($footer_headings_styles['mobile']['hover_color']); ?>;
+        <?php if (isset($footer_headings_styles['styling']['hover_color']) && $footer_headings_styles['styling']['hover_color']) : ?>
+            color: <?php echo esc_attr($footer_headings_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
         }
 
         /* Footer Copy - Mobile */
         .footer p, .footer a, .footer span {
-        <?php if (isset($footer_copy_styles['mobile']['colour']) && $footer_copy_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($footer_copy_styles['mobile']['colour']); ?>;
+        <?php if (isset($footer_copy_styles['styling']['colour']) && $footer_copy_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($footer_copy_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($footer_copy_styles['mobile']['font_family']) && $footer_copy_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($footer_copy_styles['mobile']['font_family']); ?>;
+        <?php if (isset($footer_copy_styles['styling']['font_family']) && $footer_copy_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($footer_copy_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($footer_copy_styles['mobile']['font_size']) && $footer_copy_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($footer_copy_styles['mobile']['font_size']); ?>;
@@ -481,23 +497,29 @@ function output_acf_styling_css() {
         <?php endif; ?>
         }
 
+        .footer a:after {
+            <?php if (isset($footer_copy_styles['styling']['colour']) && $footer_copy_styles['styling']['colour']) : ?>
+                background-color: <?php echo esc_attr($footer_copy_styles['styling']['colour']); ?>;
+            <?php endif; ?>
+        }
+
         .footer a {
             text-decoration: none;
         }
 
         .footer a:hover {
-        <?php if (isset($footer_copy_styles['mobile']['hover_color']) && $footer_copy_styles['mobile']['hover_color']) : ?>
-            color: <?php echo esc_attr($footer_copy_styles['mobile']['hover_color']); ?>;
+        <?php if (isset($footer_copy_styles['styling']['hover_color']) && $footer_copy_styles['styling']['hover_color']) : ?>
+            color: <?php echo esc_attr($footer_copy_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
         }
 
         /* Menu Tab - Mobile */
         .menu_section .menu_tabs_nav .menu_tab_button, #lead_submit {
-        <?php if (isset($menu_tab_styles['mobile']['colour']) && $menu_tab_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($menu_tab_styles['mobile']['colour']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['colour']) && $menu_tab_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($menu_tab_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_tab_styles['mobile']['font_family']) && $menu_tab_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($menu_tab_styles['mobile']['font_family']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['font_family']) && $menu_tab_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($menu_tab_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($menu_tab_styles['mobile']['font_size']) && $menu_tab_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($menu_tab_styles['mobile']['font_size']); ?>;
@@ -508,36 +530,36 @@ function output_acf_styling_css() {
         }
 
         .menu_section .menu_tabs_nav .menu_tab_button:hover {
-        <?php if (isset($menu_tab_styles['mobile']['hover_color']) && $menu_tab_styles['mobile']['hover_color']) : ?>
-            color: <?php echo esc_attr($menu_tab_styles['mobile']['hover_color']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['hover_color']) && $menu_tab_styles['styling']['hover_color']) : ?>
+            color: <?php echo esc_attr($menu_tab_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_tab_styles['mobile']['bg_hover_colour']) && $menu_tab_styles['mobile']['bg_hover_colour']) : ?>
-            background-color: <?php echo esc_attr($menu_tab_styles['mobile']['bg_hover_colour']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['bg_hover_colour']) && $menu_tab_styles['styling']['bg_hover_colour']) : ?>
+            background-color: <?php echo esc_attr($menu_tab_styles['styling']['bg_hover_colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_tab_styles['mobile']['bg_hover_colour']) && $menu_tab_styles['mobile']['bg_hover_colour']) : ?>
-            border-color: <?php echo esc_attr($menu_tab_styles['mobile']['bg_hover_colour']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['bg_hover_colour']) && $menu_tab_styles['styling']['bg_hover_colour']) : ?>
+            border-color: <?php echo esc_attr($menu_tab_styles['styling']['bg_hover_colour']); ?>;
         <?php endif; ?>
         }
 
         .menu_section .menu_tabs_nav .active {
-        <?php if (isset($menu_tab_styles['mobile']['hover_color']) && $menu_tab_styles['mobile']['hover_color']) : ?>
-            color: <?php echo esc_attr($menu_tab_styles['mobile']['hover_color']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['hover_color']) && $menu_tab_styles['styling']['hover_color']) : ?>
+            color: <?php echo esc_attr($menu_tab_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_tab_styles['mobile']['bg_hover_colour']) && $menu_tab_styles['mobile']['bg_hover_colour']) : ?>
-            background-color: <?php echo esc_attr($menu_tab_styles['mobile']['bg_hover_colour']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['bg_hover_colour']) && $menu_tab_styles['styling']['bg_hover_colour']) : ?>
+            background-color: <?php echo esc_attr($menu_tab_styles['styling']['bg_hover_colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_tab_styles['mobile']['bg_hover_colour']) && $menu_tab_styles['mobile']['bg_hover_colour']) : ?>
-            border-color: <?php echo esc_attr($menu_tab_styles['mobile']['bg_hover_colour']); ?>;
+        <?php if (isset($menu_tab_styles['styling']['bg_hover_colour']) && $menu_tab_styles['styling']['bg_hover_colour']) : ?>
+            border-color: <?php echo esc_attr($menu_tab_styles['styling']['bg_hover_colour']); ?>;
         <?php endif; ?>
         }
 
         /* Menu Item Heading - Mobile */
         .menu_section .menu_items_list .menu_item .menu_item_header .menu_item_title, .menu_section_title, .menu_item_price {
-        <?php if (isset($menu_item_heading_styles['mobile']['colour']) && $menu_item_heading_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($menu_item_heading_styles['mobile']['colour']); ?>;
+        <?php if (isset($menu_item_heading_styles['styling']['colour']) && $menu_item_heading_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($menu_item_heading_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_item_heading_styles['mobile']['font_family']) && $menu_item_heading_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($menu_item_heading_styles['mobile']['font_family']); ?>;
+        <?php if (isset($menu_item_heading_styles['styling']['font_family']) && $menu_item_heading_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($menu_item_heading_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($menu_item_heading_styles['mobile']['font_size']) && $menu_item_heading_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($menu_item_heading_styles['mobile']['font_size']); ?>;
@@ -549,11 +571,11 @@ function output_acf_styling_css() {
 
         /* Menu Item Body - Mobile */
         .menu_item_ingredients {
-        <?php if (isset($menu_item_body_styles['mobile']['colour']) && $menu_item_body_styles['mobile']['colour']) : ?>
-            color: <?php echo esc_attr($menu_item_body_styles['mobile']['colour']); ?>;
+        <?php if (isset($menu_item_body_styles['styling']['colour']) && $menu_item_body_styles['styling']['colour']) : ?>
+            color: <?php echo esc_attr($menu_item_body_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($menu_item_body_styles['mobile']['font_family']) && $menu_item_body_styles['mobile']['font_family']) : ?>
-            font-family: <?php echo esc_attr($menu_item_body_styles['mobile']['font_family']); ?>;
+        <?php if (isset($menu_item_body_styles['styling']['font_family']) && $menu_item_body_styles['styling']['font_family']) : ?>
+            font-family: <?php echo esc_attr($menu_item_body_styles['styling']['font_family']); ?>;
         <?php endif; ?>
         <?php if (isset($menu_item_body_styles['mobile']['font_size']) && $menu_item_body_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($menu_item_body_styles['mobile']['font_size']); ?>;

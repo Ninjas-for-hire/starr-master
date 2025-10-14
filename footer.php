@@ -14,7 +14,7 @@ $footer_text_color = get_field('footer_text_color', 'option');
 <footer style="
         background-color: <?php echo $footer_bg_color ? $footer_bg_color : '#f8f8f8'; ?>;
         color: <?php echo $footer_text_color ? $footer_text_color : '#333333'; ?>;
-        " class="footer">
+        " class="footer hover_links">
 
     <div class="container">
 
@@ -70,20 +70,26 @@ $footer_text_color = get_field('footer_text_color', 'option');
                                 <div class="contact_list">
                                     <?php foreach ($contact_section['contact_items'] as $contact): ?>
                                         <div class="contact_item">
-                                            <?php if ($contact['label']): ?>
-                                                <span class="contact_label"><?php echo esc_html($contact['label']); ?></span>
-                                            <?php endif; ?>
-
-                                            <?php if ($contact['value']): ?>
-                                                <?php if ($contact['type'] === 'phone'): ?>
+                                            <?php if ($contact['type'] === 'phone'): ?>
+                                                <?php if ($contact['label']): ?>
+                                                    <span class="contact_label"><?php echo esc_html($contact['label']); ?></span>
+                                                <?php endif; ?>
+                                                <?php if ($contact['value']): ?>
                                                     <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $contact['value'])); ?>" class="contact_value contact_phone">
                                                         <?php echo esc_html($contact['value']); ?>
                                                     </a>
-                                                <?php elseif ($contact['type'] === 'email'): ?>
+                                                <?php endif; ?>
+                                            <?php elseif ($contact['type'] === 'email'): ?>
+                                                <?php if ($contact['label'] && $contact['value']): ?>
                                                     <a href="mailto:<?php echo esc_attr($contact['value']); ?>" class="contact_value contact_email">
-                                                        <?php echo esc_html($contact['value']); ?>
+                                                        <?php echo esc_html($contact['label']); ?>
                                                     </a>
-                                                <?php else: ?>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <?php if ($contact['label']): ?>
+                                                    <span class="contact_label"><?php echo esc_html($contact['label']); ?></span>
+                                                <?php endif; ?>
+                                                <?php if ($contact['value']): ?>
                                                     <span class="contact_value"><?php echo esc_html($contact['value']); ?></span>
                                                 <?php endif; ?>
                                             <?php endif; ?>
