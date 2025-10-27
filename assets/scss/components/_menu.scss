@@ -24,6 +24,10 @@
     @media (max-width: 768px) {
       gap: 10px;
       margin-bottom: 30px;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      padding: 0 16px 32px 16px;
+      overflow: scroll;
     }
 
     .menu_tab_button {
@@ -42,13 +46,14 @@
       border-radius: 7px;
 
       @media (max-width: 768px) {
-        width: 45%;
+        //width: 45%;
       }
 
       @media (max-width: 768px) {
         padding: 10px 16px;
         font-size: 12px;
         min-width: 100px;
+        box-sizing: content-box;
       }
 
       &:hover {
@@ -71,7 +76,7 @@
   // Tab Content
   .menu_tabs_content {
     position: relative;
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 16px;
 
@@ -88,14 +93,72 @@
   // Two Column Layout
   .menu_columns {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 190px;
+    grid-template-columns: 1fr;
+    gap: 40px;
     align-items: start;
 
-    @media (max-width: 768px) {
+    &.column_count-3 {
       grid-template-columns: 1fr;
-      gap: 40px;
+
+      .menu_column {
+        position: relative;
+
+
+        &:first-of-type {
+
+          &:before {
+            content: none;
+          }
+
+        }
+
+        &:before {
+          content: none;
+          height: 100%;
+          width: 1px;
+          background-color: black;
+          position: absolute;
+          top: 0;
+          left: -20px;
+
+          @media (min-width: $screen-sm) {
+            content: none;
+          }
+
+        }
+
+      }
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
     }
+
+    &.column_count-2 {
+      grid-template-columns: 1fr;
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+    }
+
+    &.column_count-1 {
+      grid-template-columns: 1fr;
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr;
+        //gap: 190px;
+      }
+
+    }
+
+    //@media (max-width: 768px) {
+    //  grid-template-columns: 1fr;
+    //  gap: 40px;
+    //}
   }
 
   .menu_column {

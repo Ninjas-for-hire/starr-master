@@ -106,16 +106,16 @@ function output_acf_styling_css() {
         }
 
         header .inner_header .left-menu a, header .inner_header .right-menu a {
-        <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+        <?php if (isset($main_menu_styles['desktop']['colour']) && $main_menu_styles['styling']['colour']) : ?>
             color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($main_menu_styles['styling']['font_family']) && $main_menu_styles['styling']['font_family']) : ?>
+        <?php if (isset($main_menu_styles['desktop']['font_family']) && $main_menu_styles['styling']['font_family']) : ?>
             font-family: <?php echo esc_attr($main_menu_styles['styling']['font_family']); ?>;
         <?php endif; ?>
-        <?php if (isset($main_menu_styles['mobile']['font_size']) && $main_menu_styles['mobile']['font_size']) : ?>
+        <?php if (isset($main_menu_styles['desktop']['font_size']) && $main_menu_styles['mobile']['font_size']) : ?>
             font-size: <?php echo esc_attr($main_menu_styles['mobile']['font_size']); ?>;
         <?php endif; ?>
-        <?php if (isset($main_menu_styles['mobile']['line_height']) && $main_menu_styles['mobile']['line_height']) : ?>
+        <?php if (isset($main_menu_styles['desktop']['line_height']) && $main_menu_styles['mobile']['line_height']) : ?>
             line-height: <?php echo esc_attr($main_menu_styles['mobile']['line_height']); ?>;
         <?php endif; ?>
         }
@@ -365,79 +365,79 @@ function output_acf_styling_css() {
 
             /* Main Menu - Tablet */
             header .inner_header .left-menu a, header .inner_header .right-menu a {
-            <?php if (isset($main_menu_styles['tablet']['font_family']) && $main_menu_styles['tablet']['font_family']) : ?>
-                font-family: <?php echo esc_attr($main_menu_styles['tablet']['font_family']); ?>;
+            <?php if (isset($main_menu_styles['desktop']['font_family']) && $main_menu_styles['desktop']['font_family']) : ?>
+                font-family: <?php echo esc_attr($main_menu_styles['desktop']['font_family']); ?>;
             <?php endif; ?>
-            <?php if (isset($main_menu_styles['tablet']['font_size']) && $main_menu_styles['tablet']['font_size']) : ?>
-                font-size: <?php echo esc_attr($main_menu_styles['tablet']['font_size']); ?>;
+            <?php if (isset($main_menu_styles['desktop']['font_size']) && $main_menu_styles['desktop']['font_size']) : ?>
+                font-size: <?php echo esc_attr($main_menu_styles['desktop']['font_size']); ?>;
             <?php endif; ?>
-            <?php if (isset($main_menu_styles['tablet']['line_height']) && $main_menu_styles['tablet']['line_height']) : ?>
-                line-height: <?php echo esc_attr($main_menu_styles['tablet']['line_height']); ?>;
+            <?php if (isset($main_menu_styles['desktop']['line_height']) && $main_menu_styles['desktop']['line_height']) : ?>
+                line-height: <?php echo esc_attr($main_menu_styles['desktop']['line_height']); ?>;
             <?php endif; ?>
             }
 
             /* Footer Headings - Tablet */
             .footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6, .footer-heading {
-            <?php if (isset($footer_headings_styles['tablet']['font_family']) && $footer_headings_styles['tablet']['font_family']) : ?>
-                font-family: <?php echo esc_attr($footer_headings_styles['tablet']['font_family']); ?>;
+            <?php if (isset($footer_headings_styles['desktop']['font_family']) && $footer_headings_styles['desktop']['font_family']) : ?>
+                font-family: <?php echo esc_attr($footer_headings_styles['desktop']['font_family']); ?>;
             <?php endif; ?>
-            <?php if (isset($footer_headings_styles['tablet']['font_size']) && $footer_headings_styles['tablet']['font_size']) : ?>
-                font-size: <?php echo esc_attr($footer_headings_styles['tablet']['font_size']); ?>;
+            <?php if (isset($footer_headings_styles['desktop']['font_size']) && $footer_headings_styles['desktop']['font_size']) : ?>
+                font-size: <?php echo esc_attr($footer_headings_styles['desktop']['font_size']); ?>;
             <?php endif; ?>
-            <?php if (isset($footer_headings_styles['tablet']['line_height']) && $footer_headings_styles['tablet']['line_height']) : ?>
-                line-height: <?php echo esc_attr($footer_headings_styles['tablet']['line_height']); ?>;
+            <?php if (isset($footer_headings_styles['desktop']['line_height']) && $footer_headings_styles['desktop']['line_height']) : ?>
+                line-height: <?php echo esc_attr($footer_headings_styles['desktop']['line_height']); ?>;
             <?php endif; ?>
             }
 
             /* Footer Copy - Tablet */
             .footer p, .footer-text, .footer-copy {
-            <?php if (isset($footer_copy_styles['tablet']['font_family']) && $footer_copy_styles['tablet']['font_family']) : ?>
+            <?php if (isset($footer_copy_styles['desktop']['font_family']) && $footer_copy_styles['desktop']['font_family']) : ?>
                 font-family: <?php echo esc_attr($footer_copy_styles['tablet']['font_family']); ?>;
             <?php endif; ?>
-            <?php if (isset($footer_copy_styles['tablet']['font_size']) && $footer_copy_styles['tablet']['font_size']) : ?>
+            <?php if (isset($footer_copy_styles['desktop']['font_size']) && $footer_copy_styles['desktop']['font_size']) : ?>
                 font-size: <?php echo esc_attr($footer_copy_styles['tablet']['font_size']); ?>;
             <?php endif; ?>
-            <?php if (isset($footer_copy_styles['tablet']['line_height']) && $footer_copy_styles['tablet']['line_height']) : ?>
-                line-height: <?php echo esc_attr($footer_copy_styles['tablet']['line_height']); ?>;
+            <?php if (isset($footer_copy_styles['desktop']['line_height']) && $footer_copy_styles['desktop']['line_height']) : ?>
+                line-height: <?php echo esc_attr($footer_copy_styles['desktop']['line_height']); ?>;
             <?php endif; ?>
             }
 
             /* Menu Tab - Tablet */
             .menu_section .menu_tabs_nav .menu_tab_button, #lead_submit {
-            <?php if (isset($menu_tab_styles['tablet']['font_family']) && $menu_tab_styles['tablet']['font_family']) : ?>
+            <?php if (isset($menu_tab_styles['desktop']['font_family']) && $menu_tab_styles['desktop']['font_family']) : ?>
                 font-family: <?php echo esc_attr($menu_tab_styles['tablet']['font_family']); ?>;
             <?php endif; ?>
-            <?php if (isset($menu_tab_styles['tablet']['font_size']) && $menu_tab_styles['tablet']['font_size']) : ?>
+            <?php if (isset($menu_tab_styles['desktop']['font_size']) && $menu_tab_styles['desktop']['font_size']) : ?>
                 font-size: <?php echo esc_attr($menu_tab_styles['tablet']['font_size']); ?>;
             <?php endif; ?>
-            <?php if (isset($menu_tab_styles['tablet']['line_height']) && $menu_tab_styles['tablet']['line_height']) : ?>
-                line-height: <?php echo esc_attr($menu_tab_styles['tablet']['line_height']); ?>;
+            <?php if (isset($menu_tab_styles['desktop']['line_height']) && $menu_tab_styles['desktop']['line_height']) : ?>
+                line-height: <?php echo esc_attr($menu_tab_styles['desktop']['line_height']); ?>;
             <?php endif; ?>
             }
 
             /* Menu Item Heading - Tablet */
             .menu_section .menu_items_list .menu_item .menu_item_header .menu_item_title, .menu_section_title, .menu_item_price {
-            <?php if (isset($menu_item_heading_styles['tablet']['font_family']) && $menu_item_heading_styles['tablet']['font_family']) : ?>
+            <?php if (isset($menu_item_heading_styles['desktop']['font_family']) && $menu_item_heading_styles['desktop']['font_family']) : ?>
                 font-family: <?php echo esc_attr($menu_item_heading_styles['tablet']['font_family']); ?>;
             <?php endif; ?>
-            <?php if (isset($menu_item_heading_styles['tablet']['font_size']) && $menu_item_heading_styles['tablet']['font_size']) : ?>
-                font-size: <?php echo esc_attr($menu_item_heading_styles['tablet']['font_size']); ?>;
+            <?php if (isset($menu_item_heading_styles['desktop']['font_size']) && $menu_item_heading_styles['desktop']['font_size']) : ?>
+                font-size: <?php echo esc_attr($menu_item_heading_styles['desktop']['font_size']); ?>;
             <?php endif; ?>
-            <?php if (isset($menu_item_heading_styles['tablet']['line_height']) && $menu_item_heading_styles['tablet']['line_height']) : ?>
-                line-height: <?php echo esc_attr($menu_item_heading_styles['tablet']['line_height']); ?>;
+            <?php if (isset($menu_item_heading_styles['desktop']['line_height']) && $menu_item_heading_styles['desktop']['line_height']) : ?>
+                line-height: <?php echo esc_attr($menu_item_heading_styles['desktop']['line_height']); ?>;
             <?php endif; ?>
             }
 
             /* Menu Item Body - Tablet */
             .menu_item_ingredients {
-            <?php if (isset($menu_item_body_styles['tablet']['font_family']) && $menu_item_body_styles['tablet']['font_family']) : ?>
-                font-family: <?php echo esc_attr($menu_item_body_styles['tablet']['font_family']); ?>;
+            <?php if (isset($menu_item_body_styles['desktop']['font_family']) && $menu_item_body_styles['desktop']['font_family']) : ?>
+                font-family: <?php echo esc_attr($menu_item_body_styles['desktop']['font_family']); ?>;
             <?php endif; ?>
-            <?php if (isset($menu_item_body_styles['tablet']['font_size']) && $menu_item_body_styles['tablet']['font_size']) : ?>
-                font-size: <?php echo esc_attr($menu_item_body_styles['tablet']['font_size']); ?>;
+            <?php if (isset($menu_item_body_styles['desktop']['font_size']) && $menu_item_body_styles['desktop']['font_size']) : ?>
+                font-size: <?php echo esc_attr($menu_item_body_styles['desktop']['font_size']); ?>;
             <?php endif; ?>
-            <?php if (isset($menu_item_body_styles['tablet']['line_height']) && $menu_item_body_styles['tablet']['line_height']) : ?>
-                line-height: <?php echo esc_attr($menu_item_body_styles['tablet']['line_height']); ?>;
+            <?php if (isset($menu_item_body_styles['desktop']['line_height']) && $menu_item_body_styles['desktop']['line_height']) : ?>
+                line-height: <?php echo esc_attr($menu_item_body_styles['desktop']['line_height']); ?>;
             <?php endif; ?>
             }<?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
                                                                                                                color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
