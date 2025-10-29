@@ -106,17 +106,17 @@ function output_acf_styling_css() {
         }
 
         header .inner_header .left-menu a, header .inner_header .right-menu a {
-        <?php if (isset($main_menu_styles['desktop']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+        <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
             color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
         <?php endif; ?>
-        <?php if (isset($main_menu_styles['desktop']['font_family']) && $main_menu_styles['styling']['font_family']) : ?>
+        <?php if (isset($main_menu_styles['styling']['font_family']) && $main_menu_styles['styling']['font_family']) : ?>
             font-family: <?php echo esc_attr($main_menu_styles['styling']['font_family']); ?>;
         <?php endif; ?>
-        <?php if (isset($main_menu_styles['desktop']['font_size']) && $main_menu_styles['mobile']['font_size']) : ?>
-            font-size: <?php echo esc_attr($main_menu_styles['mobile']['font_size']); ?>;
+        <?php if (isset($main_menu_styles['desktop']['font_size']) && $main_menu_styles['desktop']['font_size']) : ?>
+            font-size: <?php echo esc_attr($main_menu_styles['desktop']['font_size']); ?>;
         <?php endif; ?>
-        <?php if (isset($main_menu_styles['desktop']['line_height']) && $main_menu_styles['mobile']['line_height']) : ?>
-            line-height: <?php echo esc_attr($main_menu_styles['mobile']['line_height']); ?>;
+        <?php if (isset($main_menu_styles['desktop']['line_height']) && $main_menu_styles['desktop']['line_height']) : ?>
+            line-height: <?php echo esc_attr($main_menu_styles['desktop']['line_height']); ?>;
         <?php endif; ?>
         }
 

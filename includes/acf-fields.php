@@ -2457,6 +2457,16 @@ if (function_exists('acf_add_local_field_group')) {
                             'delay' => 0,
                         ),
                         array(
+                            'key' => 'field_html_code_block_image',
+                            'label' => 'Image',
+                            'name' => 'image',
+                            'type' => 'image',
+                            'instructions' => 'Upload an image for this section (optional)',
+                            'return_format' => 'array',
+                            'preview_size' => 'medium',
+                            'library' => 'all',
+                        ),
+                        array(
                             'key' => 'field_html_code_block_content',
                             'label' => 'HTML Content',
                             'name' => 'html_content',

@@ -152,4 +152,29 @@ $right_menu = get_field('right_menu', 'option');
         });
     });
 
+    jQuery(document).ready(function($) {
+        var lastScrollTop = 0;
+        var scrollThreshold = 5; // Minimum scroll amount to trigger change
+        var header = $('header');
+
+        $(window).scroll(function() {
+            var scrollTop = $(this).scrollTop();
+
+            // At the top of the page
+            if (scrollTop <= 0) {
+                header.removeClass('scrolling-down scrolling-up');
+            }
+            // Scrolling down
+            else if (scrollTop > lastScrollTop && Math.abs(scrollTop - lastScrollTop) > scrollThreshold) {
+                header.removeClass('scrolling-up').addClass('scrolling-down');
+            }
+            // Scrolling up
+            else if (scrollTop < lastScrollTop && Math.abs(scrollTop - lastScrollTop) > scrollThreshold) {
+                header.removeClass('scrolling-down').addClass('scrolling-up');
+            }
+
+            lastScrollTop = scrollTop;
+        });
+    });
+
 </script>
