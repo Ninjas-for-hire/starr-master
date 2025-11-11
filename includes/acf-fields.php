@@ -2445,6 +2445,18 @@ if (function_exists('acf_add_local_field_group')) {
                             'instructions' => 'Enter the section title (optional)',
                         ),
                         array(
+                            'key' => 'field_content_alignment',
+                            'label' => 'Content Alignment',
+                            'name' => 'content_alignment',
+                            'type' => 'select',
+                            'instructions' => 'Select the content alignment',
+                            'choices' => array(
+                                'left' => 'Left',
+                                'right' => 'Right',
+                            ),
+                            'default_value' => 'left',
+                        ),
+                        array(
                             'key' => 'field_form_code_block_content',
                             'label' => 'Content',
                             'name' => 'content',

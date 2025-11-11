@@ -6,16 +6,15 @@ $title = $args['title'];
 $content = $args['content'];
 $html_content = $args['html_content'];
 $image = $args['image'];
-
-//var_dump($image);
+$field_content_alignment = $args['content_alignment'];
 
 ?>
 
-<section class="html_code_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?>>
+<section class="html_code_section " <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?>>
 
     <div class="container">
 
-        <div class="html_code_section_inner <?php if($image) { echo 'has_image'; } ?>">
+        <div class="html_code_section_inner <?php echo $field_content_alignment; ?> <?php if($image) { echo 'has_image'; } ?>">
 
             <div class="image_part">
                 <img src="<?php echo $image['url']; ?>" />

@@ -5,6 +5,28 @@
     flex-direction: column;
     gap: 45px;
 
+    &.left {
+
+      .content_part {
+        order: 1;
+
+        @media (min-width: 768px) {
+          order: 0;
+        }
+
+      }
+
+      .image_part {
+        order: 0;
+
+        @media (min-width: 768px) {
+          order: 1;
+        }
+
+      }
+
+    }
+
 
     &.has_image {
       flex-direction: column;
@@ -15,7 +37,11 @@
 
         img {
           max-width: 100%;
-          max-width: 525px;
+
+          @media (min-width: 768px) {
+            max-width: 525px;
+          }
+
         }
 
       }
