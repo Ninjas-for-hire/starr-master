@@ -44,6 +44,16 @@ if (function_exists('acf_add_local_field_group')) {
                 'library' => 'all',
             ),
             array(
+                'key' => 'field_logo_nobg',
+                'label' => 'No BG Logo',
+                'name' => 'no_bg_logo',
+                'type' => 'image',
+                'instructions' => 'Upload your site logo',
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'library' => 'all',
+            ),
+            array(
                 'key' => 'field_header_colour',
                 'label' => 'Header Colour',
                 'name' => 'header_colour',
@@ -75,6 +85,27 @@ if (function_exists('acf_add_local_field_group')) {
                 'key' => 'field_right_menu',
                 'label' => 'Right Menu',
                 'name' => 'right_menu',
+                'type' => 'repeater',
+                'instructions' => 'Add menu items for the right side of header',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_right_menu_link',
+                        'label' => 'Menu Link',
+                        'name' => 'menu_link',
+                        'type' => 'link',
+                        'return_format' => 'array',
+                    ),
+                ),
+                'min' => 0,
+                'max' => 10,
+                'layout' => 'table',
+                'button_label' => 'Add Menu Item',
+            ),
+
+            array(
+                'key' => 'field_desktop_right_menu',
+                'label' => 'Desktop Right Menu',
+                'name' => 'desktop_right_menu',
                 'type' => 'repeater',
                 'instructions' => 'Add menu items for the right side of header',
                 'sub_fields' => array(
@@ -390,14 +421,14 @@ if (function_exists('acf_add_local_field_group')) {
             ),
 
             // Footer styling options
-//            array(
-//                'key' => 'field_footer_background_color',
-//                'label' => 'Footer Background Color',
-//                'name' => 'footer_background_color',
-//                'type' => 'color_picker',
-//                'instructions' => 'Choose the footer background color',
-//                'default_value' => '#f8f8f8',
-//            ),
+            array(
+                'key' => 'field_footer_background_color',
+                'label' => 'Footer Background Color',
+                'name' => 'footer_background_color',
+                'type' => 'color_picker',
+                'instructions' => 'Choose the footer background color',
+                'default_value' => '#f8f8f8',
+            ),
 //            array(
 //                'key' => 'field_footer_text_color',
 //                'label' => 'Footer Text Color',
@@ -2073,6 +2104,24 @@ if (function_exists('acf_add_local_field_group')) {
                             'instructions' => 'Add any custom CSS classes, separated by spaces.',
                             'wrapper' => array(
                                 'width' => '50',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_menu_heading',
+                            'label' => 'Menu Heading',
+                            'name' => 'menu_heading',
+                            'type' => 'text',
+                            'wrapper' => array(
+                                'width' => '100',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_menu_description',
+                            'label' => 'Menu Description',
+                            'name' => 'menu_description',
+                            'type' => 'text',
+                            'wrapper' => array(
+                                'width' => '100',
                             ),
                         ),
                         // -- End Added Fields --

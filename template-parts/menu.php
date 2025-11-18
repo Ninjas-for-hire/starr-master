@@ -12,6 +12,19 @@ $menu_tabs = $args['menu_tabs'];
 
     ">
 
+    <?php if($args['menu_heading']) { ?>
+        <div class="container">
+            <div class="chef_section">
+                <div class="chef_section_inner" style="margin-bottom: 2.6rem">
+                    <div class="right" style="min-width: 100%; text-align: center; padding-top: 0;">
+                        <h2 class="chef_title" ><?php echo $args['menu_heading']; ?></h2>
+                        <div class="menu_description"><?php echo $args['menu_description']; ?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
     <div class="menu_section_inner">
 
         <?php if ($menu_tabs): ?>

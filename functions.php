@@ -109,6 +109,9 @@ function output_acf_styling_css() {
         <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
             color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
         <?php endif; ?>
+        <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+            border-color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
+        <?php endif; ?>
         <?php if (isset($main_menu_styles['styling']['font_family']) && $main_menu_styles['styling']['font_family']) : ?>
             font-family: <?php echo esc_attr($main_menu_styles['styling']['font_family']); ?>;
         <?php endif; ?>
@@ -117,6 +120,24 @@ function output_acf_styling_css() {
         <?php endif; ?>
         <?php if (isset($main_menu_styles['desktop']['line_height']) && $main_menu_styles['desktop']['line_height']) : ?>
             line-height: <?php echo esc_attr($main_menu_styles['desktop']['line_height']); ?>;
+        <?php endif; ?>
+        }
+
+        .real_header .inner_header .right-menu a:hover {
+        <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+            background-color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?> !important;
+        <?php endif; ?>
+        }
+
+        .desktop-menu-toggle span {
+        <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+            background-color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
+        <?php endif; ?>
+        }
+
+        .fake_header .right-menu a:hover {
+        <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+            background-color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
         <?php endif; ?>
         }
 
@@ -197,7 +218,7 @@ function output_acf_styling_css() {
         }
 
         /* ===== MENU ITEM HEADING STYLES ===== */
-        .menu_section .menu_items_list .menu_item .menu_item_header .menu_item_title, .menu_section_title, .menu_item_price {
+        .menu_section .menu_items_list .menu_item .menu_item_header .menu_item_title, .menu_section_title, .menu_item_price, .menu_description {
         <?php if (isset($menu_item_heading_styles['styling']['colour']) && $menu_item_heading_styles['styling']['colour']) : ?>
             color: <?php echo esc_attr($menu_item_heading_styles['styling']['colour']); ?>;
         <?php endif; ?>

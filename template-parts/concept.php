@@ -29,7 +29,7 @@
                 <div class="content">
 
                     <?php if ($title): ?>
-                        <h2 class="concept_title"><?php echo esc_html($title); ?></h2>
+                        <h1 class="concept_title"><?php echo esc_html($title); ?></h1>
                     <?php endif; ?>
 
                     <?php if ($content): ?>
