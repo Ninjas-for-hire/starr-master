@@ -9,201 +9,94 @@ $company_section = get_field('company_section', 'option');
 $mailing_list_section = get_field('mailing_list_section', 'option');
 $footer_bg_color = get_field('footer_background_color', 'option');
 $footer_text_color = get_field('footer_text_color', 'option');
+$footer_columns = get_field('footer_columns', 'option');
+$email_signup = get_field('email_signup', 'option');
+$term_pages = get_field('term_pages', 'option');
+$footer_copy = get_field('footer_copy', 'option');
+$footer_popup = get_field('footer_popup', 'option');
+$footer_copy_styles = get_field('styling_settings_footer_copy_styles', 'option')['styling']['colour'];
 ?>
+
+<div class="booking_popup">
+    <div class="internals">
+        <div class="close_btn">x Close</div>
+        <?php echo $footer_popup; ?>
+    </div>
+</div>
 
 <footer style="
         background-color: <?php echo $footer_bg_color ? $footer_bg_color : '#f8f8f8'; ?>;
         color: <?php echo $footer_text_color ? $footer_text_color : '#333333'; ?>;
+        border-color: <?php echo $footer_copy_styles ? $footer_copy_styles : '#333333'; ?>;
         " class="footer hover_links">
 
     <div class="container">
 
         <div class="inner_footer">
 
-            <div class="footer_grid">
+            <div class="footer_columns">
 
-                <!-- Left Column -->
-                <div class="footer_left_column">
-
-                    <!-- Hours Section -->
-                    <?php if ($hours_section): ?>
-                        <div class="footer_section hours_section">
-                            <?php if ($hours_section['title']): ?>
-                                <h3 class="footer_section_title"><?php echo esc_html($hours_section['title']); ?></h3>
-                            <?php endif; ?>
-
-                            <?php if ($hours_section['subtitle']): ?>
-                                <p class="hours_subtitle"><?php echo esc_html($hours_section['subtitle']); ?></p>
-                            <?php endif; ?>
-
-                            <?php if ($hours_section['hours_list']): ?>
-                                <div class="hours_list">
-                                    <?php foreach ($hours_section['hours_list'] as $hours): ?>
-                                        <p class="hours_item"><?php echo esc_html($hours['day_time']); ?></p>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Dress Code Section -->
-                    <?php if ($dress_code_section): ?>
-                        <div class="footer_section dress_code_section">
-                            <?php if ($dress_code_section['title']): ?>
-                                <h3 class="footer_section_title"><?php echo esc_html($dress_code_section['title']); ?></h3>
-                            <?php endif; ?>
-
-                            <?php if ($dress_code_section['content']): ?>
-                                <p class="dress_code_content"><?php echo esc_html($dress_code_section['content']); ?></p>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Contact Section -->
-                    <?php if ($contact_section): ?>
-                        <div class="footer_section contact_section">
-                            <?php if ($contact_section['title']): ?>
-                                <h3 class="footer_section_title"><?php echo esc_html($contact_section['title']); ?></h3>
-                            <?php endif; ?>
-
-                            <?php if ($contact_section['contact_items']): ?>
-                                <div class="contact_list">
-                                    <?php foreach ($contact_section['contact_items'] as $contact): ?>
-                                        <div class="contact_item">
-                                            <?php if ($contact['type'] === 'phone'): ?>
-                                                <?php if ($contact['label']): ?>
-                                                    <span class="contact_label"><?php echo esc_html($contact['label']); ?></span>
-                                                <?php endif; ?>
-                                                <?php if ($contact['value']): ?>
-                                                    <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $contact['value'])); ?>" class="contact_value contact_phone">
-                                                        <?php echo esc_html($contact['value']); ?>
-                                                    </a>
-                                                <?php endif; ?>
-                                            <?php elseif ($contact['type'] === 'email'): ?>
-                                                <?php if ($contact['label'] && $contact['value']): ?>
-                                                    <a href="mailto:<?php echo esc_attr($contact['value']); ?>" class="contact_value contact_email">
-                                                        <?php echo esc_html($contact['label']); ?>
-                                                    </a>
-                                                <?php endif; ?>
-                                            <?php else: ?>
-                                                <?php if ($contact['label']): ?>
-                                                    <span class="contact_label"><?php echo esc_html($contact['label']); ?></span>
-                                                <?php endif; ?>
-                                                <?php if ($contact['value']): ?>
-                                                    <span class="contact_value"><?php echo esc_html($contact['value']); ?></span>
-                                                <?php endif; ?>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-
-                </div>
-
-                <!-- Right Column -->
-                <div class="footer_right_column">
-
-                    <!-- Location Section -->
-                    <?php if ($location_section): ?>
-                        <div class="footer_section location_section">
-                            <?php if ($location_section['title']): ?>
-                                <h3 class="footer_section_title"><?php echo esc_html($location_section['title']); ?></h3>
-                            <?php endif; ?>
-
-                            <div class="location_address">
-                                <?php if ($location_section['address_line_1']): ?>
-                                    <p class="address_line"><?php echo esc_html($location_section['address_line_1']); ?></p>
-                                <?php endif; ?>
-
-                                <?php if ($location_section['address_line_2']): ?>
-                                    <p class="address_line"><?php echo esc_html($location_section['address_line_2']); ?></p>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Social Media Section -->
-                    <?php if ($social_section && $social_section['social_links']): ?>
-                        <div class="footer_section social_section">
-                            <?php if ($social_section['title']): ?>
-                                <h3 class="footer_section_title"><?php echo esc_html($social_section['title']); ?></h3>
-                            <?php endif; ?>
-
-                            <div class="social_links">
-                                <?php foreach ($social_section['social_links'] as $social): ?>
-                                    <?php if ($social['platform'] && $social['url']): ?>
-                                        <a href="<?php echo esc_url($social['url']); ?>"
-                                           class="social_link"
-                                           target="_blank"
-                                           rel="noopener noreferrer">
-                                            <?php echo esc_html($social['platform']); ?>
+                <?php if ($footer_columns): ?>
+                    <?php foreach ($footer_columns as $column): ?>
+                        <div class="column">
+                            <?php if ($column['column_fields']): ?>
+                                <?php foreach ($column['column_fields'] as $field): ?>
+                                    
+                                    <?php if ($field['field_type'] === 'heading' && $field['heading']): ?>
+                                        <h3 class="footer_section_title"><?php echo esc_html($field['heading']); ?></h3>
+                                    
+                                    <?php elseif ($field['field_type'] === 'text' && $field['text']): ?>
+                                        <p class="footer_text"><?php echo esc_html($field['text']); ?></p>
+                                    
+                                    <?php elseif ($field['field_type'] === 'link' && $field['link']): ?>
+                                        <a href="<?php echo esc_url($field['link']['url']); ?>"
+                                           class="footer_link"
+                                           <?php if ($field['link']['target']): ?>target="<?php echo esc_attr($field['link']['target']); ?>"<?php endif; ?>>
+                                            <?php echo esc_html($field['link']['title']); ?>
                                         </a>
                                     <?php endif; ?>
+                                    
                                 <?php endforeach; ?>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Company Links Section -->
-                    <?php if ($company_section): ?>
-                        <div class="footer_section company_section">
-                            <?php if ($company_section['title']): ?>
-                                <h3 class="footer_section_title"><?php echo esc_html($company_section['title']); ?></h3>
-                            <?php endif; ?>
-
-                            <!-- First Row of Company Links -->
-                            <?php if ($company_section['company_links_row_1']): ?>
-                                <div class="company_links company_links_row_1">
-                                    <?php foreach ($company_section['company_links_row_1'] as $link_item): ?>
-                                        <?php $link = $link_item['link']; ?>
-                                        <?php if ($link): ?>
-                                            <a href="<?php echo esc_url($link['url']); ?>"
-                                               class="company_link"
-                                               <?php if ($link['target']): ?>target="<?php echo esc_attr($link['target']); ?>"<?php endif; ?>>
-                                                <?php echo esc_html($link['title']); ?>
-                                            </a>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-
-                            <!-- Second Row of Company Links -->
-                            <?php if ($company_section['company_links_row_2']): ?>
-                                <div class="company_links company_links_row_2">
-                                    <?php foreach ($company_section['company_links_row_2'] as $link_item): ?>
-                                        <?php $link = $link_item['link']; ?>
-                                        <?php if ($link): ?>
-                                            <a href="<?php echo esc_url($link['url']); ?>"
-                                               class="company_link"
-                                               <?php if ($link['target']): ?>target="<?php echo esc_attr($link['target']); ?>"<?php endif; ?>>
-                                                <?php echo esc_html($link['title']); ?>
-                                            </a>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </div>
                             <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
 
-                    <!-- Mailing List Section -->
-                    <?php if ($mailing_list_section): ?>
-                        <div class="footer_section mailing_list_section">
-                            <?php if ($mailing_list_section['text'] && $mailing_list_section['url']): ?>
-                                <a href="<?php echo esc_url($mailing_list_section['url']); ?>"
-                                   class="mailing_list_link"
-                                   target="_blank"
-                                   rel="noopener noreferrer">
-                                    <?php echo esc_html($mailing_list_section['text']); ?>
-                                </a>
-                            <?php elseif ($mailing_list_section['text']): ?>
-                                <p class="mailing_list_text"><?php echo esc_html($mailing_list_section['text']); ?></p>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-
+                <div class="column email_col">
+                    <div class="email_holder">
+                        <h3 class="footer_section_title">Email Signup</h3>
+                        <?php if ($email_signup): ?>
+                            <a href="<?php echo esc_url($email_signup['url']); ?>"
+                               class="email_signup_link"
+                               <?php if ($email_signup['target']): ?>target="<?php echo esc_attr($email_signup['target']); ?>"<?php endif; ?>>
+                                <?php echo esc_html($email_signup['title']); ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer_bottom" style="border-color: <?php echo $footer_copy_styles ? $footer_copy_styles : '#333333'; ?>;">
+
+                <?php if ($footer_copy): ?>
+                    <p class="footer_copy"><?php echo esc_html($footer_copy); ?></p>
+                <?php endif; ?>
+
+                <?php if ($term_pages): ?>
+                    <div class="term_pages">
+                        <?php foreach ($term_pages as $term): ?>
+                            <?php $link = $term['link']; ?>
+                            <?php if ($link): ?>
+                                <a href="<?php echo esc_url($link['url']); ?>"
+                                   class="term_link"
+                                   <?php if ($link['target']): ?>target="<?php echo esc_attr($link['target']); ?>"<?php endif; ?>>
+                                    <?php echo esc_html($link['title']); ?>
+                                </a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
 
             </div>
 

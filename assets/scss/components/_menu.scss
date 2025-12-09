@@ -267,12 +267,9 @@
       }
 
       .menu_item_ingredients {
-
         font-style: italic;
-
         line-height: 1.4;
         margin: 0 0 8px 0;
-
 
         .menu_item_price {
           font-weight: 700;
@@ -419,4 +416,17 @@
       transform: none;
     }
   }
+}
+
+
+.section_description {
+  margin: 0 0 2em 0 !important;
+
+  p {
+    font-style: italic;
+    line-height: 1.4;
+    margin: 0 0 8px 0;
+    font-size: 12px;
+  }
+
 }

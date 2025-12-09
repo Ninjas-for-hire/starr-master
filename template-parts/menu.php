@@ -86,6 +86,10 @@ $menu_tabs = $args['menu_tabs'];
                                                             <h3 class="menu_section_title"><?php echo esc_html($section['section_title']); ?></h3>
                                                         <?php endif; ?>
 
+                                                        <?php if ($section['section_description']): ?>
+                                                            <div class="menu_item_ingredients section_description"><?php echo $section['section_description']; ?></div>
+                                                        <?php endif; ?>
+
                                                         <?php if ($section['menu_items']): ?>
                                                             <div class="menu_items_list">
                                                                 <?php foreach ($section['menu_items'] as $item): ?>

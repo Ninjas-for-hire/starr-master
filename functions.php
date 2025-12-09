@@ -171,7 +171,7 @@ function output_acf_styling_css() {
         }
 
         /* ===== FOOTER COPY STYLES ===== */
-        .footer p, .footer-text, .footer-copy {
+        .footer p, .footer-text, .footer-copy, .footer .inner_footer .footer_columns .column .email_signup_link {
         <?php if (isset($footer_copy_styles['styling']['colour']) && $footer_copy_styles['styling']['colour']) : ?>
             color: <?php echo esc_attr($footer_copy_styles['styling']['colour']); ?>;
         <?php endif; ?>
@@ -186,10 +186,20 @@ function output_acf_styling_css() {
         <?php endif; ?>
         }
 
-        .footer a:hover {
-        <?php if (isset($footer_copy_styles['styling']['hover_color']) && $footer_copy_styles['styling']['hover_color']) : ?>
-            color: <?php echo esc_attr($footer_copy_styles['styling']['hover_color']); ?>;
-        <?php endif; ?>
+        .footer .inner_footer .footer_columns .column .email_signup_link {
+            <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+                border-color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
+            <?php endif; ?>
+        }
+
+        .footer .inner_footer .footer_columns .column .email_signup_link:hover {
+            <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+                background-color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?> !important;
+            <?php endif; ?>
+        }
+
+        .footer .inner_footer .footer_columns .column .email_signup_link:hover {
+            border-color: <?php echo esc_attr($footer_copy_styles['styling']['hover_color']); ?> !important;
         }
 
         /* ===== MENU TAB STYLES ===== */
@@ -234,7 +244,7 @@ function output_acf_styling_css() {
         }
 
         /* ===== MENU ITEM BODY STYLES ===== */
-        .menu_item_ingredients {
+        .menu_item_ingredients, .menu_item .description p {
         <?php if (isset($menu_item_body_styles['styling']['colour']) && $menu_item_body_styles['styling']['colour']) : ?>
             color: <?php echo esc_attr($menu_item_body_styles['styling']['colour']); ?>;
         <?php endif; ?>

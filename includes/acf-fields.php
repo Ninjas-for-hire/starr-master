@@ -63,10 +63,10 @@ if (function_exists('acf_add_local_field_group')) {
             ),
             array(
                 'key' => 'field_left_menu',
-                'label' => 'Left Menu',
+                'label' => 'Main Menu',
                 'name' => 'left_menu',
                 'type' => 'repeater',
-                'instructions' => 'Add menu items for the left side of header',
+                'instructions' => 'Add menu items for the main menu',
                 'sub_fields' => array(
                     array(
                         'key' => 'field_left_menu_link',
@@ -81,26 +81,26 @@ if (function_exists('acf_add_local_field_group')) {
                 'layout' => 'table',
                 'button_label' => 'Add Menu Item',
             ),
-            array(
-                'key' => 'field_right_menu',
-                'label' => 'Right Menu',
-                'name' => 'right_menu',
-                'type' => 'repeater',
-                'instructions' => 'Add menu items for the right side of header',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_right_menu_link',
-                        'label' => 'Menu Link',
-                        'name' => 'menu_link',
-                        'type' => 'link',
-                        'return_format' => 'array',
-                    ),
-                ),
-                'min' => 0,
-                'max' => 10,
-                'layout' => 'table',
-                'button_label' => 'Add Menu Item',
-            ),
+//            array(
+//                'key' => 'field_right_menu',
+//                'label' => 'Right Menu',
+//                'name' => 'right_menu',
+//                'type' => 'repeater',
+//                'instructions' => 'Add menu items for the right side of header',
+//                'sub_fields' => array(
+//                    array(
+//                        'key' => 'field_right_menu_link',
+//                        'label' => 'Menu Link',
+//                        'name' => 'menu_link',
+//                        'type' => 'link',
+//                        'return_format' => 'array',
+//                    ),
+//                ),
+//                'min' => 0,
+//                'max' => 10,
+//                'layout' => 'table',
+//                'button_label' => 'Add Menu Item',
+//            ),
 
             array(
                 'key' => 'field_desktop_right_menu',
@@ -133,292 +133,292 @@ if (function_exists('acf_add_local_field_group')) {
             ),
 
             // Hours Section
-            array(
-                'key' => 'field_hours_section',
-                'label' => 'Hours Section',
-                'name' => 'hours_section',
-                'type' => 'group',
-                'instructions' => 'Configure the hours section',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_hours_title',
-                        'label' => 'Hours Title',
-                        'name' => 'title',
-                        'type' => 'text',
-                        'default_value' => 'Hours',
-                    ),
-                    array(
-                        'key' => 'field_hours_subtitle',
-                        'label' => 'Hours Subtitle',
-                        'name' => 'subtitle',
-                        'type' => 'text',
-                        'default_value' => 'OPEN FOR INDOOR DINING',
-                    ),
-                    array(
-                        'key' => 'field_hours_list',
-                        'label' => 'Hours List',
-                        'name' => 'hours_list',
-                        'type' => 'repeater',
-                        'instructions' => 'Add operating hours',
-                        'sub_fields' => array(
-                            array(
-                                'key' => 'field_day_time',
-                                'label' => 'Day & Time',
-                                'name' => 'day_time',
-                                'type' => 'text',
-                                'instructions' => 'e.g., Sunday – Thursday: 11:30am-2pm (lunch); 5-10pm (dinner)',
-                            ),
-                        ),
-                        'min' => 1,
-                        'max' => 10,
-                        'layout' => 'table',
-                        'button_label' => 'Add Hours',
-                    ),
-                ),
-            ),
+//            array(
+//                'key' => 'field_hours_section',
+//                'label' => 'Hours Section',
+//                'name' => 'hours_section',
+//                'type' => 'group',
+//                'instructions' => 'Configure the hours section',
+//                'sub_fields' => array(
+//                    array(
+//                        'key' => 'field_hours_title',
+//                        'label' => 'Hours Title',
+//                        'name' => 'title',
+//                        'type' => 'text',
+//                        'default_value' => 'Hours',
+//                    ),
+//                    array(
+//                        'key' => 'field_hours_subtitle',
+//                        'label' => 'Hours Subtitle',
+//                        'name' => 'subtitle',
+//                        'type' => 'text',
+//                        'default_value' => 'OPEN FOR INDOOR DINING',
+//                    ),
+//                    array(
+//                        'key' => 'field_hours_list',
+//                        'label' => 'Hours List',
+//                        'name' => 'hours_list',
+//                        'type' => 'repeater',
+//                        'instructions' => 'Add operating hours',
+//                        'sub_fields' => array(
+//                            array(
+//                                'key' => 'field_day_time',
+//                                'label' => 'Day & Time',
+//                                'name' => 'day_time',
+//                                'type' => 'text',
+//                                'instructions' => 'e.g., Sunday – Thursday: 11:30am-2pm (lunch); 5-10pm (dinner)',
+//                            ),
+//                        ),
+//                        'min' => 1,
+//                        'max' => 10,
+//                        'layout' => 'table',
+//                        'button_label' => 'Add Hours',
+//                    ),
+//                ),
+//            ),
 
             // Dress Code Section
-            array(
-                'key' => 'field_dress_code_section',
-                'label' => 'Dress Code Section',
-                'name' => 'dress_code_section',
-                'type' => 'group',
-                'instructions' => 'Configure the dress code section',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_dress_code_title',
-                        'label' => 'Dress Code Title',
-                        'name' => 'title',
-                        'type' => 'text',
-                        'default_value' => 'DRESS CODE',
-                    ),
-                    array(
-                        'key' => 'field_dress_code_content',
-                        'label' => 'Dress Code Content',
-                        'name' => 'content',
-                        'type' => 'textarea',
-                        'rows' => 3,
-                        'default_value' => 'We politely request that you dress your best for your evening with us: Elegant for a NYC night out. Jackets are not required.',
-                    ),
-                ),
-            ),
+//            array(
+//                'key' => 'field_dress_code_section',
+//                'label' => 'Dress Code Section',
+//                'name' => 'dress_code_section',
+//                'type' => 'group',
+//                'instructions' => 'Configure the dress code section',
+//                'sub_fields' => array(
+//                    array(
+//                        'key' => 'field_dress_code_title',
+//                        'label' => 'Dress Code Title',
+//                        'name' => 'title',
+//                        'type' => 'text',
+//                        'default_value' => 'DRESS CODE',
+//                    ),
+//                    array(
+//                        'key' => 'field_dress_code_content',
+//                        'label' => 'Dress Code Content',
+//                        'name' => 'content',
+//                        'type' => 'textarea',
+//                        'rows' => 3,
+//                        'default_value' => 'We politely request that you dress your best for your evening with us: Elegant for a NYC night out. Jackets are not required.',
+//                    ),
+//                ),
+//            ),
 
             // Contact Section
-            array(
-                'key' => 'field_contact_section',
-                'label' => 'Contact Section',
-                'name' => 'contact_section',
-                'type' => 'group',
-                'instructions' => 'Configure the contact section',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_contact_title',
-                        'label' => 'Contact Title',
-                        'name' => 'title',
-                        'type' => 'text',
-                        'default_value' => 'Contact',
-                    ),
-                    array(
-                        'key' => 'field_contact_items',
-                        'label' => 'Contact Items',
-                        'name' => 'contact_items',
-                        'type' => 'repeater',
-                        'instructions' => 'Add contact information',
-                        'sub_fields' => array(
-                            array(
-                                'key' => 'field_contact_label',
-                                'label' => 'Label',
-                                'name' => 'label',
-                                'type' => 'text',
-                                'instructions' => 'e.g., PHONE:, RESERVATIONS:, GENERAL:',
-                            ),
-                            array(
-                                'key' => 'field_contact_value',
-                                'label' => 'Value',
-                                'name' => 'value',
-                                'type' => 'text',
-                                'instructions' => 'e.g., (212) 271-4252, email@domain.com',
-                            ),
-                            array(
-                                'key' => 'field_contact_type',
-                                'label' => 'Contact Type',
-                                'name' => 'type',
-                                'type' => 'select',
-                                'choices' => array(
-                                    'phone' => 'Phone',
-                                    'email' => 'Email',
-                                    'text' => 'Text',
-                                ),
-                                'default_value' => 'text',
-                            ),
-                        ),
-                        'min' => 1,
-                        'max' => 10,
-                        'layout' => 'table',
-                        'button_label' => 'Add Contact Item',
-                    ),
-                ),
-            ),
+//            array(
+//                'key' => 'field_contact_section',
+//                'label' => 'Contact Section',
+//                'name' => 'contact_section',
+//                'type' => 'group',
+//                'instructions' => 'Configure the contact section',
+//                'sub_fields' => array(
+//                    array(
+//                        'key' => 'field_contact_title',
+//                        'label' => 'Contact Title',
+//                        'name' => 'title',
+//                        'type' => 'text',
+//                        'default_value' => 'Contact',
+//                    ),
+//                    array(
+//                        'key' => 'field_contact_items',
+//                        'label' => 'Contact Items',
+//                        'name' => 'contact_items',
+//                        'type' => 'repeater',
+//                        'instructions' => 'Add contact information',
+//                        'sub_fields' => array(
+//                            array(
+//                                'key' => 'field_contact_label',
+//                                'label' => 'Label',
+//                                'name' => 'label',
+//                                'type' => 'text',
+//                                'instructions' => 'e.g., PHONE:, RESERVATIONS:, GENERAL:',
+//                            ),
+//                            array(
+//                                'key' => 'field_contact_value',
+//                                'label' => 'Value',
+//                                'name' => 'value',
+//                                'type' => 'text',
+//                                'instructions' => 'e.g., (212) 271-4252, email@domain.com',
+//                            ),
+//                            array(
+//                                'key' => 'field_contact_type',
+//                                'label' => 'Contact Type',
+//                                'name' => 'type',
+//                                'type' => 'select',
+//                                'choices' => array(
+//                                    'phone' => 'Phone',
+//                                    'email' => 'Email',
+//                                    'text' => 'Text',
+//                                ),
+//                                'default_value' => 'text',
+//                            ),
+//                        ),
+//                        'min' => 1,
+//                        'max' => 10,
+//                        'layout' => 'table',
+//                        'button_label' => 'Add Contact Item',
+//                    ),
+//                ),
+//            ),
 
             // Location Section
-            array(
-                'key' => 'field_location_section',
-                'label' => 'Location Section',
-                'name' => 'location_section',
-                'type' => 'group',
-                'instructions' => 'Configure the location section',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_location_title',
-                        'label' => 'Location Title',
-                        'name' => 'title',
-                        'type' => 'text',
-                        'default_value' => 'Location',
-                    ),
-                    array(
-                        'key' => 'field_address_line_1',
-                        'label' => 'Address Line 1',
-                        'name' => 'address_line_1',
-                        'type' => 'text',
-                        'default_value' => '138 Lafayette St.',
-                    ),
-                    array(
-                        'key' => 'field_address_line_2',
-                        'label' => 'Address Line 2',
-                        'name' => 'address_line_2',
-                        'type' => 'text',
-                        'default_value' => 'New York, NY 10013',
-                    ),
-                ),
-            ),
+//            array(
+//                'key' => 'field_location_section',
+//                'label' => 'Location Section',
+//                'name' => 'location_section',
+//                'type' => 'group',
+//                'instructions' => 'Configure the location section',
+//                'sub_fields' => array(
+//                    array(
+//                        'key' => 'field_location_title',
+//                        'label' => 'Location Title',
+//                        'name' => 'title',
+//                        'type' => 'text',
+//                        'default_value' => 'Location',
+//                    ),
+//                    array(
+//                        'key' => 'field_address_line_1',
+//                        'label' => 'Address Line 1',
+//                        'name' => 'address_line_1',
+//                        'type' => 'text',
+//                        'default_value' => '138 Lafayette St.',
+//                    ),
+//                    array(
+//                        'key' => 'field_address_line_2',
+//                        'label' => 'Address Line 2',
+//                        'name' => 'address_line_2',
+//                        'type' => 'text',
+//                        'default_value' => 'New York, NY 10013',
+//                    ),
+//                ),
+//            ),
 
             // Connect With Us Section
-            array(
-                'key' => 'field_social_section',
-                'label' => 'Connect With Us Section',
-                'name' => 'social_section',
-                'type' => 'group',
-                'instructions' => 'Configure the social media section',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_social_title',
-                        'label' => 'Social Title',
-                        'name' => 'title',
-                        'type' => 'text',
-                        'default_value' => 'Connect With Us',
-                    ),
-                    array(
-                        'key' => 'field_social_links',
-                        'label' => 'Social Links',
-                        'name' => 'social_links',
-                        'type' => 'repeater',
-                        'instructions' => 'Add social media links',
-                        'sub_fields' => array(
-                            array(
-                                'key' => 'field_social_platform',
-                                'label' => 'Platform Name',
-                                'name' => 'platform',
-                                'type' => 'text',
-                                'instructions' => 'e.g., Facebook, Instagram, Spotify',
-                            ),
-                            array(
-                                'key' => 'field_social_url',
-                                'label' => 'URL',
-                                'name' => 'url',
-                                'type' => 'url',
-                                'instructions' => 'Enter the full URL',
-                            ),
-                        ),
-                        'min' => 1,
-                        'max' => 10,
-                        'layout' => 'table',
-                        'button_label' => 'Add Social Link',
-                    ),
-                ),
-            ),
+//            array(
+//                'key' => 'field_social_section',
+//                'label' => 'Connect With Us Section',
+//                'name' => 'social_section',
+//                'type' => 'group',
+//                'instructions' => 'Configure the social media section',
+//                'sub_fields' => array(
+//                    array(
+//                        'key' => 'field_social_title',
+//                        'label' => 'Social Title',
+//                        'name' => 'title',
+//                        'type' => 'text',
+//                        'default_value' => 'Connect With Us',
+//                    ),
+//                    array(
+//                        'key' => 'field_social_links',
+//                        'label' => 'Social Links',
+//                        'name' => 'social_links',
+//                        'type' => 'repeater',
+//                        'instructions' => 'Add social media links',
+//                        'sub_fields' => array(
+//                            array(
+//                                'key' => 'field_social_platform',
+//                                'label' => 'Platform Name',
+//                                'name' => 'platform',
+//                                'type' => 'text',
+//                                'instructions' => 'e.g., Facebook, Instagram, Spotify',
+//                            ),
+//                            array(
+//                                'key' => 'field_social_url',
+//                                'label' => 'URL',
+//                                'name' => 'url',
+//                                'type' => 'url',
+//                                'instructions' => 'Enter the full URL',
+//                            ),
+//                        ),
+//                        'min' => 1,
+//                        'max' => 10,
+//                        'layout' => 'table',
+//                        'button_label' => 'Add Social Link',
+//                    ),
+//                ),
+//            ),
 
             // Company Links Section
-            array(
-                'key' => 'field_company_section',
-                'label' => 'Company Links Section',
-                'name' => 'company_section',
-                'type' => 'group',
-                'instructions' => 'Configure the company links section',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_company_title',
-                        'label' => 'Company Title',
-                        'name' => 'title',
-                        'type' => 'text',
-                        'default_value' => 'Starr Restaurants',
-                    ),
-                    array(
-                        'key' => 'field_company_links_row_1',
-                        'label' => 'Company Links Row 1',
-                        'name' => 'company_links_row_1',
-                        'type' => 'repeater',
-                        'instructions' => 'Add first row of company links',
-                        'sub_fields' => array(
-                            array(
-                                'key' => 'field_company_link_1',
-                                'label' => 'Link',
-                                'name' => 'link',
-                                'type' => 'link',
-                                'return_format' => 'array',
-                            ),
-                        ),
-                        'min' => 1,
-                        'max' => 10,
-                        'layout' => 'table',
-                        'button_label' => 'Add Link',
-                    ),
-                    array(
-                        'key' => 'field_company_links_row_2',
-                        'label' => 'Company Links Row 2',
-                        'name' => 'company_links_row_2',
-                        'type' => 'repeater',
-                        'instructions' => 'Add second row of company links',
-                        'sub_fields' => array(
-                            array(
-                                'key' => 'field_company_link_2',
-                                'label' => 'Link',
-                                'name' => 'link',
-                                'type' => 'link',
-                                'return_format' => 'array',
-                            ),
-                        ),
-                        'min' => 1,
-                        'max' => 10,
-                        'layout' => 'table',
-                        'button_label' => 'Add Link',
-                    ),
-                ),
-            ),
+//            array(
+//                'key' => 'field_company_section',
+//                'label' => 'Company Links Section',
+//                'name' => 'company_section',
+//                'type' => 'group',
+//                'instructions' => 'Configure the company links section',
+//                'sub_fields' => array(
+//                    array(
+//                        'key' => 'field_company_title',
+//                        'label' => 'Company Title',
+//                        'name' => 'title',
+//                        'type' => 'text',
+//                        'default_value' => 'Starr Restaurants',
+//                    ),
+//                    array(
+//                        'key' => 'field_company_links_row_1',
+//                        'label' => 'Company Links Row 1',
+//                        'name' => 'company_links_row_1',
+//                        'type' => 'repeater',
+//                        'instructions' => 'Add first row of company links',
+//                        'sub_fields' => array(
+//                            array(
+//                                'key' => 'field_company_link_1',
+//                                'label' => 'Link',
+//                                'name' => 'link',
+//                                'type' => 'link',
+//                                'return_format' => 'array',
+//                            ),
+//                        ),
+//                        'min' => 1,
+//                        'max' => 10,
+//                        'layout' => 'table',
+//                        'button_label' => 'Add Link',
+//                    ),
+//                    array(
+//                        'key' => 'field_company_links_row_2',
+//                        'label' => 'Company Links Row 2',
+//                        'name' => 'company_links_row_2',
+//                        'type' => 'repeater',
+//                        'instructions' => 'Add second row of company links',
+//                        'sub_fields' => array(
+//                            array(
+//                                'key' => 'field_company_link_2',
+//                                'label' => 'Link',
+//                                'name' => 'link',
+//                                'type' => 'link',
+//                                'return_format' => 'array',
+//                            ),
+//                        ),
+//                        'min' => 1,
+//                        'max' => 10,
+//                        'layout' => 'table',
+//                        'button_label' => 'Add Link',
+//                    ),
+//                ),
+//            ),
 
             // Mailing List Section
-            array(
-                'key' => 'field_mailing_list_section',
-                'label' => 'Mailing List Section',
-                'name' => 'mailing_list_section',
-                'type' => 'group',
-                'instructions' => 'Configure the mailing list section',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_mailing_list_text',
-                        'label' => 'Mailing List Text',
-                        'name' => 'text',
-                        'type' => 'text',
-                        'default_value' => 'Join our Mailing List',
-                    ),
-                    array(
-                        'key' => 'field_mailing_list_url',
-                        'label' => 'Mailing List URL',
-                        'name' => 'url',
-                        'type' => 'url',
-                        'instructions' => 'Enter the mailing list signup URL',
-                    ),
-                ),
-            ),
+//            array(
+//                'key' => 'field_mailing_list_section',
+//                'label' => 'Mailing List Section',
+//                'name' => 'mailing_list_section',
+//                'type' => 'group',
+//                'instructions' => 'Configure the mailing list section',
+//                'sub_fields' => array(
+//                    array(
+//                        'key' => 'field_mailing_list_text',
+//                        'label' => 'Mailing List Text',
+//                        'name' => 'text',
+//                        'type' => 'text',
+//                        'default_value' => 'Join our Mailing List',
+//                    ),
+//                    array(
+//                        'key' => 'field_mailing_list_url',
+//                        'label' => 'Mailing List URL',
+//                        'name' => 'url',
+//                        'type' => 'url',
+//                        'instructions' => 'Enter the mailing list signup URL',
+//                    ),
+//                ),
+//            ),
 
             // Footer styling options
             array(
@@ -437,6 +437,137 @@ if (function_exists('acf_add_local_field_group')) {
 //                'instructions' => 'Choose the footer text color',
 //                'default_value' => '#333333',
 //            ),
+
+            // Footer Columns
+            array(
+                'key' => 'field_footer_columns',
+                'label' => 'Footer Columns',
+                'name' => 'footer_columns',
+                'type' => 'repeater',
+                'instructions' => 'Add footer columns',
+                'layout' => 'block',
+                'button_label' => 'Add Column',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_column_fields',
+                        'label' => 'Column Fields',
+                        'name' => 'column_fields',
+                        'type' => 'repeater',
+                        'instructions' => 'Add fields to this column',
+                        'layout' => 'table',
+                        'button_label' => 'Add Field',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_field_type',
+                                'label' => 'Field Type',
+                                'name' => 'field_type',
+                                'type' => 'select',
+                                'choices' => array(
+                                    'heading' => 'Heading',
+                                    'text' => 'Text',
+                                    'link' => 'Link',
+                                ),
+                                'default_value' => 'heading',
+                            ),
+                            array(
+                                'key' => 'field_field_heading',
+                                'label' => 'Heading',
+                                'name' => 'heading',
+                                'type' => 'text',
+                                'conditional_logic' => array(
+                                    array(
+                                        array(
+                                            'field' => 'field_field_type',
+                                            'operator' => '==',
+                                            'value' => 'heading',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'key' => 'field_field_text',
+                                'label' => 'Text',
+                                'name' => 'text',
+                                'type' => 'text',
+                                'conditional_logic' => array(
+                                    array(
+                                        array(
+                                            'field' => 'field_field_type',
+                                            'operator' => '==',
+                                            'value' => 'text',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'key' => 'field_field_link',
+                                'label' => 'Link',
+                                'name' => 'link',
+                                'type' => 'link',
+                                'return_format' => 'array',
+                                'conditional_logic' => array(
+                                    array(
+                                        array(
+                                            'field' => 'field_field_type',
+                                            'operator' => '==',
+                                            'value' => 'link',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+            // Email Signup Link
+            array(
+                'key' => 'field_email_signup',
+                'label' => 'Email Signup',
+                'name' => 'email_signup',
+                'type' => 'link',
+                'instructions' => 'Add email signup link',
+                'return_format' => 'array',
+            ),
+
+            // Term Pages
+            array(
+                'key' => 'field_term_pages',
+                'label' => 'Term Pages',
+                'name' => 'term_pages',
+                'type' => 'repeater',
+                'instructions' => 'Add links to term pages (Privacy Policy, Terms, etc.)',
+                'layout' => 'table',
+                'button_label' => 'Add Term Page',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_term_page_link',
+                        'label' => 'Link',
+                        'name' => 'link',
+                        'type' => 'link',
+                        'return_format' => 'array',
+                    ),
+                ),
+            ),
+
+            // Copy Field
+            array(
+                'key' => 'field_footer_copy',
+                'label' => 'Copy',
+                'name' => 'footer_copy',
+                'type' => 'text',
+                'instructions' => 'Add footer copyright text',
+                'default_value' => '© 2024 All Rights Reserved',
+            ),
+
+            array(
+                'key' => 'footer_popup_script',
+                'label' => 'Copy',
+                'name' => 'footer_popup',
+                'type' => 'textarea',
+                'instructions' => 'Add in one script you would like to show in a popup',
+                'default_value' => '',
+            ),
 
             // STYLING TAB
             array(
@@ -2176,6 +2307,15 @@ if (function_exists('acf_add_local_field_group')) {
                                             'name' => 'section_title',
                                             'type' => 'text',
                                             'instructions' => 'Enter section title (e.g., Hors d\'oeuvres)',
+                                        ),array(
+                                            'key' => 'field_section_description',
+                                            'label' => 'Section Description',
+                                            'name' => 'section_description',
+                                            'type' => 'wysiwyg',
+                                            'instructions' => 'Enter the Section Description',
+                                            'toolbar' => 'full',
+                                            'media_upload' => 1,
+                                            'delay' => 0,
                                         ),
                                         array(
                                             'key' => 'field_menu_items',
@@ -2535,6 +2675,55 @@ if (function_exists('acf_add_local_field_group')) {
                             'instructions' => 'Enter your custom HTML code',
                             'rows' => 10,
                             'placeholder' => 'Enter your HTML code here...',
+                        ),
+                    ),
+                    'min' => '',
+                    'max' => '',
+                ),
+                'layout_basic_header' => array(
+                    'key' => 'layout_basic_header',
+                    'name' => 'basic_header',
+                    'label' => 'Basic Header',
+                    'display' => 'block',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_basic_header_section_id',
+                            'label' => 'Section ID',
+                            'name' => 'section_id',
+                            'type' => 'text',
+                            'instructions' => 'Enter a unique ID for anchor linking (e.g., about-us). No spaces or special characters.',
+                            'wrapper' => array(
+                                'width' => '50',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_basic_header_section_class',
+                            'label' => 'Section Class',
+                            'name' => 'section_class',
+                            'type' => 'text',
+                            'instructions' => 'Add any custom CSS classes, separated by spaces.',
+                            'wrapper' => array(
+                                'width' => '50',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_basic_header_image',
+                            'label' => 'Image',
+                            'name' => 'image',
+                            'type' => 'image',
+                            'instructions' => 'Upload the header image',
+                            'return_format' => 'array',
+                            'preview_size' => 'medium',
+                            'library' => 'all',
+                            'required' => 1,
+                        ),
+                        array(
+                            'key' => 'field_basic_header_title',
+                            'label' => 'Title',
+                            'name' => 'title',
+                            'type' => 'text',
+                            'instructions' => 'Enter the header title',
+                            'required' => 1,
                         ),
                     ),
                     'min' => '',

@@ -25,6 +25,7 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
 
     <div class="container">
 
+
         <div class="inner_header hover_links">
 
             <nav class="left-menu desktop-menu">
@@ -35,16 +36,18 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
                 </button>
             </nav>
 
-            <div class="logo">
+            <a href="/" class="logo" title="<?php echo esc_attr($no_bg_logo['alt']); ?>">
                 <?php if ($logo): ?>
+
                     <img src="<?php echo esc_url($logo['url']); ?>"
                          alt="<?php echo esc_attr($logo['alt']); ?>"
                          width="<?php echo $logo['width']; ?>"
                          height="<?php echo $logo['height']; ?>">
+
                 <?php else: ?>
                     <h1><?php bloginfo('name'); ?></h1>
                 <?php endif; ?>
-            </div>
+            </a>
 
             <?php if ($desktop_right_menu): ?>
                 <nav class="right-menu desktop-menu">
@@ -89,7 +92,7 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
             <?php if ($left_menu): ?>
                 <div class="mobile-menu-section">
                     <a  class="desktop-menu-toggle-menu">
-                        x Close Menu
+                        x Close
                     </a>
                     <?php foreach ($left_menu as $item):
                         $link = $item['menu_link'];
@@ -103,19 +106,6 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
                 </div>
             <?php endif; ?>
 
-            <?php if ($right_menu): ?>
-                <div class="mobile-menu-section">
-                    <?php foreach ($right_menu as $item):
-                        $link = $item['menu_link'];
-                        if ($link): ?>
-                            <a href="<?php echo esc_url($link['url']); ?>"
-                               target="<?php echo $link['target'] ? $link['target'] : '_self'; ?>">
-                                <?php echo esc_html($link['title']); ?>
-                            </a>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
         </nav>
     </div>
 
@@ -136,19 +126,6 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
                 </div>
             <?php endif; ?>
 
-            <?php if ($right_menu): ?>
-                <div class="mobile-menu-section">
-                    <?php foreach ($right_menu as $item):
-                        $link = $item['menu_link'];
-                        if ($link): ?>
-                            <a href="<?php echo esc_url($link['url']); ?>"
-                               target="<?php echo $link['target'] ? $link['target'] : '_self'; ?>">
-                                <?php echo esc_html($link['title']); ?>
-                            </a>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
         </nav>
     </div>
 
@@ -164,6 +141,10 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
         .real_header .right-menu a:hover {
             color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
         }
+        .footer .inner_footer .footer_columns .column .email_signup_link:hover {
+            color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
+        }
+
     </style>
 
     <div class="container">
@@ -180,10 +161,12 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
 
             <div class="logo">
                 <?php if ($no_bg_logo): ?>
+                <a href="/" title="<?php echo esc_attr($no_bg_logo['alt']); ?>" >
                     <img src="<?php echo esc_url($no_bg_logo['url']); ?>"
                          alt="<?php echo esc_attr($no_bg_logo['alt']); ?>"
                          width="<?php echo $no_bg_logo['width']; ?>"
                          height="<?php echo $no_bg_logo['height']; ?>">
+                </a>
                 <?php else: ?>
                     <h1><?php bloginfo('name'); ?></h1>
                 <?php endif; ?>
@@ -268,7 +251,16 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
     });
 
     jQuery(document).ready(function() {
-        // Add smooth scrolling to all anchor links with offset
+
+        jQuery('a[href="#open_popup"]').on('click', function(e) {
+            e.preventDefault();
+            jQuery('.booking_popup').addClass('open');
+        });
+
+        jQuery('.booking_popup .close_btn').on('click', function() {
+            jQuery('.booking_popup').removeClass('open');
+        });
+
         jQuery('a[href^="#"]').on('click', function(e) {
             e.preventDefault();
 

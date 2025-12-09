@@ -25,6 +25,8 @@
                     <?php get_template_part('template-parts/menu', null, $component); ?>
                 <?php elseif ($component['acf_fc_layout'] == 'html_code_block'): ?>
                     <?php get_template_part('template-parts/html-code-block', null, $component); ?>
+                <?php elseif ($component['acf_fc_layout'] == 'basic_header'): ?>
+                    <?php get_template_part('template-parts/basic-header', null, $component); ?>
                 <?php endif; ?>
                 
             <?php endforeach; ?>

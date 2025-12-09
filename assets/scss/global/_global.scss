@@ -40,3 +40,38 @@ body {
   }
 
 }
+// List styling
+ol, ul {
+  margin: 0 0 1.5em 0;
+  padding: 0 0 0 2em;
+  list-style-position: outside;
+  
+  li {
+    display: list-item;
+    margin-bottom: 0.5em;
+  }
+}
+
+ul {
+  list-style-type: disc;
+  
+  li {
+    list-style-type: disc;
+  }
+}
+
+ol {
+  list-style-type: decimal;
+  
+  li {
+    list-style-type: decimal;
+  }
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-bottom: 0;
+  margin-top: 0.5em;
+}

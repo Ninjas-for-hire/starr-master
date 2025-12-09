@@ -34,10 +34,19 @@ header {
             left: 0;
             right: 0;
             margin: 0 auto;
-            width: 100%;
+            width: fit-content;
             text-align: center;
-            z-index: 0;
-            pointer-events: none;
+            z-index: 9;
+
+            a {
+                &:after {
+                    content: none !important;
+                }
+            }
+
+            &:after {
+                content: none !important;
+            }
 
             @media (max-width: 768px) {
                 position: static;
@@ -69,7 +78,6 @@ header {
             z-index: 1;
 
             a {
-                font-family: Arial;
                 font-weight: 400;
                 text-align: center;
                 vertical-align: middle;
@@ -129,7 +137,7 @@ header {
 
 .desktop-menu-toggle-menu {
     position: relative;
-    top: -100px;
+    top: -60px;
     cursor: pointer;
     border-bottom: none !important;
     font-size: 14px !important;
@@ -296,7 +304,6 @@ header {
             gap: 25px;
 
             a {
-                font-family: Arial;
                 font-weight: 400;
                 line-height: 100%;
                 text-transform: uppercase;
@@ -304,7 +311,6 @@ header {
                 text-decoration: none;
                 color: #000000;
                 padding: 10px 0;
-                border-bottom: 1px solid #f0f0f0;
                 transition: color 0.3s ease;
 
                 &:hover {
@@ -328,7 +334,7 @@ header {
     z-index: -1;
 
     @media (min-width: 768px) {
-        width: 400px;
+        width: 450px;
     }
 
     .overlay {
@@ -366,22 +372,21 @@ header {
         padding: 40px 30px;
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 25px;
 
         .mobile-menu-section {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 10px;
 
             a {
-                font-family: Arial;
                 font-weight: 400;
                 line-height: 100%;
                 font-size: 14px;
                 text-decoration: none;
                 color: #000000;
                 padding: 10px 0;
-                border-bottom: 1px solid #f0f0f0;
                 transition: color 0.3s ease;
 
                 @media (min-width: 768px) {
