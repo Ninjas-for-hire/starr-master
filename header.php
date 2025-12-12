@@ -91,7 +91,7 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
 
             <?php if ($left_menu): ?>
                 <div class="mobile-menu-section">
-                    <a  class="desktop-menu-toggle-menu">
+                    <a  class="desktop-menu-toggle-menu" tabindex="0" role="button">
                         x Close
                     </a>
                     <?php foreach ($left_menu as $item):

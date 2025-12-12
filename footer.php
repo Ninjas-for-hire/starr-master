@@ -17,7 +17,7 @@ $footer_popup = get_field('footer_popup', 'option');
 $footer_copy_styles = get_field('styling_settings_footer_copy_styles', 'option')['styling']['colour'];
 ?>
 
-<div class="booking_popup">
+<div class="booking_popup" id="open_popup">
     <div class="internals">
         <div class="close_btn">x Close</div>
         <?php echo $footer_popup; ?>
@@ -88,7 +88,7 @@ $footer_copy_styles = get_field('styling_settings_footer_copy_styles', 'option')
                         <?php foreach ($term_pages as $term): ?>
                             <?php $link = $term['link']; ?>
                             <?php if ($link): ?>
-                                <a href="<?php echo esc_url($link['url']); ?>"
+                                <a href="<?php echo esc_url($link['url']); ?>" aria-label="<?php echo esc_attr($link['title']); ?>"
                                    class="term_link"
                                    <?php if ($link['target']): ?>target="<?php echo esc_attr($link['target']); ?>"<?php endif; ?>>
                                     <?php echo esc_html($link['title']); ?>
