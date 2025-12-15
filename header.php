@@ -3,28 +3,41 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<?php bloginfo('description'); ?>">
     <?php wp_head(); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://use.typekit.net/hja0acw.css">
+
+    <?php
+        // Get ACF fields
+        $header_colour = get_field('header_colour', 'option');
+        $logo = get_field('logo', 'option');
+        $no_bg_logo = get_field('no_bg_logo', 'option');
+        $left_menu = get_field('left_menu', 'option');
+        $right_menu = get_field('right_menu', 'option');
+        $desktop_right_menu = get_field('desktop_right_menu', 'option');
+    ?>
+
+    <style type="text/css">
+        .fake_header .right-menu a {
+            background-color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?>;
+            border: 1px solid <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
+        }
+        .real_header .right-menu a:hover {
+            color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
+        }
+        .footer .inner_footer .footer_columns .column .email_signup_link:hover {
+            color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
+        }
+
+    </style>
+
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<?php
-// Get ACF fields
-$header_colour = get_field('header_colour', 'option');
-$logo = get_field('logo', 'option');
-$no_bg_logo = get_field('no_bg_logo', 'option');
-$left_menu = get_field('left_menu', 'option');
-$right_menu = get_field('right_menu', 'option');
-$desktop_right_menu = get_field('desktop_right_menu', 'option');
-?>
-
 <header class="real_header" style="background-color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?>;">
 
     <div class="container">
-
 
         <div class="inner_header hover_links">
 
@@ -75,8 +88,6 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
     </div>
 
     <div class="desktop-menu-slider">
-
-
 
         <div class="overlay"></div>
         <div class="underlay"></div>
@@ -133,20 +144,6 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
 
 <header class="fake_header" >
 
-    <style type="text/css">
-        .fake_header .right-menu a {
-            background-color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?>;
-            border: 1px solid <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
-        }
-        .real_header .right-menu a:hover {
-            color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
-        }
-        .footer .inner_footer .footer_columns .column .email_signup_link:hover {
-            color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
-        }
-
-    </style>
-
     <div class="container">
 
         <div class="inner_header hover_links">
@@ -198,6 +195,7 @@ $desktop_right_menu = get_field('desktop_right_menu', 'option');
     </div>
 
 </header>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
