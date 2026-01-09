@@ -17,7 +17,9 @@ $field_content_alignment = $args['content_alignment'];
         <div class="html_code_section_inner <?php echo $field_content_alignment; ?> <?php if($image) { echo 'has_image'; } ?>">
 
             <div class="image_part">
+                <?php if ( !empty($image['url']) ) { ?>
                 <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                <?php } ?>
             </div>
 
             <div class="content_part">
