@@ -45,6 +45,20 @@ function star_enqueue_styles() {
 add_action('wp_enqueue_scripts', 'star_enqueue_styles');
 
 
+// Enqueue scripts
+
+add_filter( 'wp_inline_script_attributes', function ( $attributes ) {
+    if ( isset( $attributes['type'] ) && 'speculationrules' === $attributes['type'] ) {
+        $attributes['type'] = 'application/speculationrules+json';
+    }
+    return $attributes;
+} );
+
+// <script type="speculationrules">
+// {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/star-child\/*","\/wp-content\/themes\/star-master\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+// </script>
+
+
 /**
  * Output ACF Styling Options as CSS
  */

@@ -9,7 +9,9 @@ if (!defined('ABSPATH')) {
 }
 
 // Add ACF Options Page
-if (function_exists('acf_add_options_page')) {
+add_action('acf/init', 'my_options_page');
+function my_options_page() {
+
     acf_add_options_page(array(
         'page_title' => 'Global Settings',
         'menu_title' => 'Global Settings',
@@ -19,8 +21,8 @@ if (function_exists('acf_add_options_page')) {
     ));
 }
 
-// Global Settings Field Group with Tabs
-if (function_exists('acf_add_local_field_group')) {
+add_action('acf/init', 'my_register_fields');
+function my_register_fields() {
     acf_add_local_field_group(array(
         'key' => 'group_global_settings',
         'title' => 'Global Settings',
