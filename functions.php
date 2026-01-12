@@ -484,8 +484,8 @@ function output_acf_styling_css() {
             <?php if (isset($menu_item_body_styles['desktop']['line_height']) && $menu_item_body_styles['desktop']['line_height']) : ?>
                 line-height: <?php echo esc_attr($menu_item_body_styles['desktop']['line_height']); ?>;
             <?php endif; ?>
-            }<?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
-                                                                                                               color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
+            <?php if (isset($main_menu_styles['styling']['colour']) && $main_menu_styles['styling']['colour']) : ?>
+           color: <?php echo esc_attr($main_menu_styles['styling']['colour']); ?>;
         <?php endif; ?>
         <?php if (isset($main_menu_styles['styling']['font_family']) && $main_menu_styles['styling']['font_family']) : ?>
             font-family: <?php echo esc_attr($main_menu_styles['styling']['font_family']); ?>;
@@ -630,9 +630,21 @@ function output_acf_styling_css() {
         <?php endif; ?>
         }
         }
+
+        h1, h2, h3, h4, h5, p, a, span, label, button {
+            background-color: transparent;
+        }
     </style>
     <?php
 }
 
 // Hook the function to wp_head to output the styles
 add_action('wp_head', 'output_acf_styling_css');
+
+function dequeue_block_styles() {
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+    wp_dequeue_style('wc-blocks-style'); // WooCommerce blocks (if applicable)
+    wp_dequeue_style('global-styles');   // Global styles (WP 5.9+)
+}
+add_action('wp_enqueue_scripts', 'dequeue_block_styles', 100);

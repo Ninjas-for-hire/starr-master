@@ -10,7 +10,7 @@ $field_content_alignment = $args['content_alignment'];
 
 ?>
 
-<section class="html_code_section " <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?>>
+<section class="html_code_section " style="background-color: :#ffffff;" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?>>
 
     <div class="container">
 
