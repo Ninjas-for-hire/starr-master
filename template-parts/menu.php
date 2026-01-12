@@ -8,7 +8,7 @@ $menu_tabs = $args['menu_tabs'];
 
 ?>
 
-<section class="menu_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?> style="background-color: :#ffffff;">
+<section class="menu_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?> style="background-color:#ffffff;">
 
     <?php if($args['menu_heading']) { ?>
         <div class="container">

@@ -291,6 +291,11 @@
                 fakeHeaders.removeClass('deactivate');
             }
         });
+
+        setTimeout(function() {
+            jQuery('.ot-dtp-picker[role="main"]').attr('role', 'search');
+        }, 1000);
+
     });
 
 

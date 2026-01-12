@@ -10,7 +10,7 @@ $field_content_alignment = $args['content_alignment'];
 
 ?>
 
-<section class="html_code_section " style="background-color: :#ffffff;" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?>>
+<section class="html_code_section " style="background-color:#ffffff;" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?>>
 
     <div class="container">
 
@@ -18,7 +18,7 @@ $field_content_alignment = $args['content_alignment'];
 
             <div class="image_part">
                 <?php if ( !empty($image['url']) ) { ?>
-                <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" />
                 <?php } ?>
             </div>
 
