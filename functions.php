@@ -16,6 +16,7 @@ require_once get_template_directory() . '/includes/theme-updater.php';
 
 // Theme setup
 function star_theme_setup() {
+    
     // Add theme support for title tag
     add_theme_support('title-tag');
     

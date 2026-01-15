@@ -277,17 +277,83 @@
 
     jQuery(document).ready(function() {
 
+        // Modal Accessibility Fixes
+        var $bookingPopup = jQuery('.booking_popup');
+        var lastFocusedElement;
+
+        function trapModalFocus(e) {
+            if (!$bookingPopup.hasClass('open')) return;
+
+            var isTab = (e.key === 'Tab' || e.keyCode === 9);
+            var isEsc = (e.key === 'Escape' || e.keyCode === 27);
+
+            if (isEsc) {
+                closeBookingPopup();
+                return;
+            }
+
+            if (!isTab) return;
+
+            var focusableElements = $bookingPopup[0].querySelectorAll('a[href], button:not([disabled]), area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]');
+            var focusableCollection = Array.prototype.slice.call(focusableElements);
+            
+            if (focusableCollection.length === 0) return;
+
+            var firstTabStop = focusableCollection[0];
+            var lastTabStop = focusableCollection[focusableCollection.length - 1];
+
+            if (e.shiftKey) { /* shift + tab */
+                if (document.activeElement === firstTabStop) {
+                    e.preventDefault();
+                    lastTabStop.focus();
+                }
+            } else { /* tab */
+                if (document.activeElement === lastTabStop) {
+                    e.preventDefault();
+                    firstTabStop.focus();
+                }
+            }
+        }
+
+        function openBookingPopup() {
+            lastFocusedElement = document.activeElement;
+            $bookingPopup.addClass('open');
+            $bookingPopup.attr('aria-hidden', 'false');
+            $bookingPopup.attr('role', 'dialog');
+            $bookingPopup.attr('aria-modal', 'true');
+            
+            // Allow visibility transition before focus
+            setTimeout(function() {
+                var closeBtn = $bookingPopup.find('.close_btn');
+                if (closeBtn.length) {
+                    closeBtn.focus();
+                }
+            }, 50);
+
+            document.addEventListener('keydown', trapModalFocus);
+        }
+
+        function closeBookingPopup() {
+            $bookingPopup.removeClass('open');
+            $bookingPopup.attr('aria-hidden', 'true');
+            $bookingPopup.removeAttr('role');
+            $bookingPopup.removeAttr('aria-modal');
+            
+            document.removeEventListener('keydown', trapModalFocus);
+            
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        }
+
         jQuery('a[href="#open_popup"]').on('click', function(e) {
             e.preventDefault();
-            jQuery('.booking_popup').addClass('open');
-            // aria-hidden="true"
-            jQuery('.booking_popup').attr('aria-hidden', 'false');
-            jQuery('.booking_popup').removeAttr('role').removeAttr('aria-modal');
+            openBookingPopup();
         });
 
-        jQuery('.booking_popup .close_btn').on('click', function() {
-            jQuery('.booking_popup').removeClass('open');
-            jQuery('.booking_popup').attr('role', 'dialog').attr('aria-modal', 'true').attr('aria-hidden', 'true');
+        jQuery(document).on('click', '.booking_popup .close_btn', function(e) {
+            e.preventDefault();
+            closeBookingPopup();
         });
 
         jQuery('a[href^="#"]').on('click', function(e) {

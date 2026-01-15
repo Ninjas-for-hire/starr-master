@@ -19,7 +19,10 @@ $footer_copy_styles = get_field('styling_settings_footer_copy_styles', 'option')
 
 <div class="booking_popup" id="open_popup" aria-hidden="true">
     <div class="internals">
-        <div class="close_btn">x Close</div>
+        <button class="close_btn" type="button" style="background: transparent; border: none; cursor: pointer;">
+            ×
+            <span class="screen-reader-text">Close</span>
+        </button>
         <?php echo $footer_popup; ?>
     </div>
 </div>
