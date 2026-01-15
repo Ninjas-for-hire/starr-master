@@ -10,7 +10,7 @@ $padding = $args['padding'];
 $background_color = $args['background_color'];
 ?>
 
-<section class="full_width_image_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?> style="
+<div class="full_width_image_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?> style="
     background-color: <?php echo $background_color ? $background_color : '#ffffff'; ?>;
     padding: <?php echo $padding ? $padding . 'px' : ''; ?> 0 <?php echo $padding ? $padding . 'px' : ''; ?> 0;
 ">
@@ -32,4 +32,4 @@ $background_color = $args['background_color'];
 
     </div>
 
-</section>
+</div>

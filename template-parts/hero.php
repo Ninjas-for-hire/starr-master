@@ -8,7 +8,7 @@ $hero_image = $args['hero_image'];
 $hero_image_mobile = $args['hero_image_mobile'];
 ?>
 
-<section class="hero_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?> >
+<div class="hero_section" <?php $section_id = $args['section_id']; if($section_id){?> id="<?php echo $section_id; ?>" <?php } ?> >
     <?php if ($hero_image): ?>
         <div class="hero_image">
             <img src="<?php echo esc_url($hero_image['url']); ?>" 
@@ -26,4 +26,4 @@ $hero_image_mobile = $args['hero_image_mobile'];
                  height="<?php echo $hero_image_mobile['height']; ?>">
         </div>
     <?php endif; ?>
-</section>
+</div>

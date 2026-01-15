@@ -10,7 +10,7 @@ $section_id = $args['section_id'];
 $section_class = $args['section_class'];
 ?>
 
-<section class="basic_header_section <?php echo esc_attr($section_class); ?>" <?php if($section_id): ?> id="<?php echo esc_attr($section_id); ?>" <?php endif; ?>>
+<div class="basic_header_section <?php echo esc_attr($section_class); ?>" <?php if($section_id): ?> id="<?php echo esc_attr($section_id); ?>" <?php endif; ?>>
 
     <div class="overlay"></div>
 
@@ -36,4 +36,4 @@ $section_class = $args['section_class'];
 
     </div>
 
-</section>
+</div>
