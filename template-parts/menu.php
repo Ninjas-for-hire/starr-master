@@ -31,7 +31,9 @@ $menu_tabs = $args['menu_tabs'];
             <div class="menu_tabs_nav">
                 <?php foreach ($menu_tabs as $index => $tab): ?>
                     <button class="menu_tab_button <?php echo $index === 0 ? 'active' : ''; ?>"
-                            data-tab="tab-<?php echo $index; ?>">
+                            data-tab="tab-<?php echo $index; ?>"
+                            aria-expanded="<?php echo $index === 0 ? 'true' : 'false'; ?>"
+                            aria-controls="tab-<?php echo $index; ?>">
                         <?php echo esc_html($tab['tab_name']); ?>
                     </button>
                 <?php endforeach; ?>
@@ -60,7 +62,8 @@ $menu_tabs = $args['menu_tabs'];
                     ?>
 
                     <div class="menu_tab_content <?php echo $index === 0 ? 'active' : ''; ?>"
-                         id="tab-<?php echo $index; ?>">
+                         id="tab-<?php echo $index; ?>"
+                         <?php echo $index === 0 ? '' : 'hidden'; ?>>
 
                         <?php if ($tab['tab_description']): ?>
                             <div class="tab_description"><?php echo $tab['tab_description']; ?></div>
@@ -174,14 +177,22 @@ $menu_tabs = $args['menu_tabs'];
                         const targetTab = this.getAttribute('data-tab');
 
                         // Remove active class from buttons and contents ONLY within this menu section
-                        tabButtons.forEach(btn => btn.classList.remove('active'));
-                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(btn => {
+                            btn.classList.remove('active');
+                            btn.setAttribute('aria-expanded', 'false');
+                        });
+                        tabContents.forEach(content => {
+                            content.classList.remove('active');
+                            content.setAttribute('hidden', '');
+                        });
 
                         // Add active class to clicked button and corresponding content
                         this.classList.add('active');
+                        this.setAttribute('aria-expanded', 'true');
                         const targetContent = menuSection.querySelector('#' + targetTab);
                         if (targetContent) {
                             targetContent.classList.add('active');
+                            targetContent.removeAttribute('hidden');
                         }
                     });
                 });
