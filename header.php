@@ -18,12 +18,23 @@
     ?>
 
     <style type="text/css">
-        .fake_header .right-menu a {
+        /* .fake_header .right-menu a {
+            background-color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?>;
+            border: 1px solid <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
+        } */
+        
+        .real_header .right-menu a {
             background-color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?>;
             border: 1px solid <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
         }
         .real_header .right-menu a:hover {
             color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
+        }
+        .real_header.active {
+            background-color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?>;
+        }
+        .real_header.active .right-menu a {
+            border: 1px solid #fff !important;
         }
         .footer .inner_footer .footer_columns .column .email_signup_link:hover {
             color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?> !important;
@@ -35,7 +46,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<header class="real_header" style="background-color: <?php echo $header_colour ? $header_colour : '#ffffff'; ?>;">
+<header class="real_header">
 
     <div class="container">
 
@@ -77,7 +88,7 @@
             <?php endif; ?>
 
             <!-- Mobile Menu Button -->
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -142,73 +153,65 @@
 
 </header>
 
-<header class="fake_header" >
-
-    <div class="container">
-
-        <div class="inner_header hover_links">
-
-            <nav class="left-menu desktop-menu">
-                <button class="desktop-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-
-            <div class="logo">
-                <?php if ($no_bg_logo): ?>
-                <a href="/" title="<?php echo esc_attr($no_bg_logo['alt']); ?>" >
-                    <img src="<?php echo esc_url($no_bg_logo['url']); ?>"
-                         alt="<?php echo esc_attr($no_bg_logo['alt']); ?>"
-                         width="<?php echo $no_bg_logo['width']; ?>"
-                         height="<?php echo $no_bg_logo['height']; ?>">
-                </a>
-                <?php else: ?>
-                    <h1><?php bloginfo('name'); ?></h1>
-                <?php endif; ?>
-            </div>
-
-            <?php if ($desktop_right_menu): ?>
-                <nav class="right-menu desktop-menu">
-                    <?php foreach ($desktop_right_menu as $item):
-                        $link = $item['menu_link'];
-                        if ($link): ?>
-                            <a href="<?php echo esc_url($link['url']); ?>"
-                               target="<?php echo $link['target'] ? $link['target'] : '_self'; ?>">
-                                <?php echo esc_html($link['title']); ?>
-                            </a>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </nav>
-            <?php endif; ?>
-
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-        </div>
-
-    </div>
-
-</header>
-
-
 <script>
+    function trapFocus(e) {
+        var isTab = (e.key === 'Tab' || e.keyCode === 9);
+        if (!isTab) {
+            return;
+        }
+
+        var activeMenu = document.querySelector('.mobile-menu.active, .desktop-menu-slider.active');
+        if (!activeMenu) {
+            return;
+        }
+
+        var focusableElements = activeMenu.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]');
+        var focusableCollection = Array.prototype.slice.call(focusableElements);
+    
+        var firstTabStop = focusableCollection[0];
+        var lastTabStop = focusableCollection[focusableCollection.length - 1];
+
+        if (e.shiftKey) { /* shift + tab */
+            if (document.activeElement === firstTabStop) {
+                e.preventDefault();
+                lastTabStop.focus();
+            }
+        } else { /* tab */
+            if (document.activeElement === lastTabStop) {
+                e.preventDefault();
+                firstTabStop.focus();
+            }
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         // Mobile menu toggle - works for all instances
         const mobileToggles = document.querySelectorAll('.mobile-menu-toggle');
         const mobileMenus = document.querySelectorAll('.mobile-menu');
         const body = document.body;
 
+        // Initialize aria-hidden
+        mobileMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
+
         mobileToggles.forEach(function(mobileToggle, index) {
             mobileToggle.addEventListener('click', function() {
                 mobileToggles.forEach(toggle => toggle.classList.toggle('active'));
                 mobileMenus.forEach(menu => menu.classList.toggle('active'));
                 body.classList.toggle('mobile-menu-open');
+
+                if (body.classList.contains('mobile-menu-open')) {
+                    mobileMenus.forEach(menu => {
+                        menu.setAttribute('aria-hidden', 'false');
+                        const firstMenuItem = menu.querySelector('a, button, input');
+                        if (firstMenuItem) {
+                            firstMenuItem.focus();
+                        }
+                    });
+                    document.addEventListener('keydown', trapFocus);
+                } else {
+                    mobileMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
+                    document.removeEventListener('keydown', trapFocus);
+                }
             });
         });
 
@@ -219,6 +222,9 @@
                 mobileToggles.forEach(toggle => toggle.classList.remove('active'));
                 mobileMenus.forEach(menu => menu.classList.remove('active'));
                 body.classList.remove('mobile-menu-open');
+                
+                mobileMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
+                document.removeEventListener('keydown', trapFocus);
             });
         });
     });
@@ -229,11 +235,29 @@
         const desktopMenus = document.querySelectorAll('.desktop-menu-slider');
         const body = document.body;
 
+        // Initialize aria-hidden
+        desktopMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
+
         desktopToggles.forEach(function(desktopToggle) {
             desktopToggle.addEventListener('click', function() {
+                // // //
                 desktopToggles.forEach(toggle => toggle.classList.toggle('active'));
                 desktopMenus.forEach(menu => menu.classList.toggle('active'));
                 body.classList.toggle('mobile-menu-open');
+
+                if (body.classList.contains('mobile-menu-open')) {
+                    desktopMenus.forEach(menu => {
+                        menu.setAttribute('aria-hidden', 'false');
+                        const firstMenuItem = menu.querySelector('a, button, input');
+                        if (firstMenuItem) {
+                            firstMenuItem.focus();
+                        }
+                    });
+                    document.addEventListener('keydown', trapFocus);
+                } else {
+                    desktopMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
+                    document.removeEventListener('keydown', trapFocus);
+                }
             });
         });
 
@@ -244,6 +268,9 @@
                 desktopToggles.forEach(toggle => toggle.classList.remove('active'));
                 desktopMenus.forEach(menu => menu.classList.remove('active'));
                 body.classList.remove('mobile-menu-open');
+                
+                desktopMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
+                document.removeEventListener('keydown', trapFocus);
             });
         });
     });
@@ -253,10 +280,14 @@
         jQuery('a[href="#open_popup"]').on('click', function(e) {
             e.preventDefault();
             jQuery('.booking_popup').addClass('open');
+            // aria-hidden="true"
+            jQuery('.booking_popup').attr('aria-hidden', 'false');
+            jQuery('.booking_popup').removeAttr('role').removeAttr('aria-modal');
         });
 
         jQuery('.booking_popup .close_btn').on('click', function() {
             jQuery('.booking_popup').removeClass('open');
+            jQuery('.booking_popup').attr('role', 'dialog').attr('aria-modal', 'true').attr('aria-hidden', 'true');
         });
 
         jQuery('a[href^="#"]').on('click', function(e) {
@@ -276,17 +307,27 @@
         // Scroll functionality for real_header and fake_header
         var realHeaders = jQuery('.real_header');
         var fakeHeaders = jQuery('.fake_header');
-        var scrollThreshold = 50; // Pixels scrolled before triggering
+        var scrollThreshold = 5; // Pixels scrolled before triggering
+        var scrollTimer;
 
         jQuery(window).on('scroll', function() {
             var scrollTop = jQuery(window).scrollTop();
 
             if (scrollTop > scrollThreshold) {
                 // User has scrolled down
-                realHeaders.addClass('active');
-                fakeHeaders.addClass('deactivate');
+                if (!realHeaders.hasClass('active') && !realHeaders.hasClass('hidden')) {
+                    realHeaders.addClass('hidden');
+                    fakeHeaders.addClass('deactivate');
+
+                    scrollTimer = setTimeout(function() {
+                        realHeaders.removeClass('hidden');
+                        realHeaders.addClass('active');
+                    }, 200);
+                }
             } else {
                 // User is at the top
+                clearTimeout(scrollTimer);
+                realHeaders.removeClass('hidden');
                 realHeaders.removeClass('active');
                 fakeHeaders.removeClass('deactivate');
             }
@@ -297,6 +338,5 @@
         }, 1000);
 
     });
-
 
 </script>
