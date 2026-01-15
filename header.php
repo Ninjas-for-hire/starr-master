@@ -113,9 +113,9 @@
 
             <?php if ($left_menu): ?>
                 <div class="mobile-menu-section">
-                    <a  class="desktop-menu-toggle-menu" tabindex="0" role="button">
+                    <button class="desktop-menu-toggle-menu" type="button" aria-label="Close menu">
                         x Close
-                    </a>
+                    </button>
                     <?php foreach ($left_menu as $item):
                         $link = $item['menu_link'];
                         if ($link): ?>
@@ -262,7 +262,7 @@
         });
 
         // Close desktop menu when clicking on a link - works for all instances
-        const desktopLinks = document.querySelectorAll('.desktop-menu-slider a');
+        const desktopLinks = document.querySelectorAll('.desktop-menu-slider a, .desktop-menu-toggle-menu');
         desktopLinks.forEach(function(link) {
             link.addEventListener('click', function() {
                 desktopToggles.forEach(toggle => toggle.classList.remove('active'));
