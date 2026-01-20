@@ -75,3 +75,8 @@ ol ul {
   margin-bottom: 0;
   margin-top: 0.5em;
 }
+
+
+.ot-dtp-picker .picker__day[disabled]:not(.day_selected) {
+  color: #767676 !important;
+}
