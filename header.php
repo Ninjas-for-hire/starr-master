@@ -62,12 +62,10 @@
 
             <a href="/" class="logo" title="<?php echo esc_attr($no_bg_logo['alt']); ?>">
                 <?php if ($logo): ?>
-
                     <img src="<?php echo esc_url($logo['url']); ?>"
                          alt="<?php echo esc_attr($logo['alt']); ?>"
                          width="<?php echo $logo['width']; ?>"
                          height="<?php echo $logo['height']; ?>">
-
                 <?php else: ?>
                     <h1><?php bloginfo('name'); ?></h1>
                 <?php endif; ?>
@@ -87,55 +85,23 @@
                 </nav>
             <?php endif; ?>
 
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
         </div>
 
     </div>
 
-    <div class="desktop-menu-slider">
+    <div class="desktop-menu-slider" style="display: none;">
 
         <div class="overlay"></div>
         <div class="underlay"></div>
 
         <nav class="mobile-nav">
-
-            <button class="desktop-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <br>
 
             <?php if ($left_menu): ?>
                 <div class="mobile-menu-section">
                     <button class="desktop-menu-toggle-menu" type="button" aria-label="Close menu">
                         x Close
                     </button>
-                    <?php foreach ($left_menu as $item):
-                        $link = $item['menu_link'];
-                        if ($link): ?>
-                            <a href="<?php echo esc_url($link['url']); ?>"
-                               target="<?php echo $link['target'] ? $link['target'] : '_self'; ?>">
-                                <?php echo esc_html($link['title']); ?>
-                            </a>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-
-        </nav>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <nav class="mobile-nav">
-            <?php if ($left_menu): ?>
-                <div class="mobile-menu-section">
                     <?php foreach ($left_menu as $item):
                         $link = $item['menu_link'];
                         if ($link): ?>
@@ -160,7 +126,7 @@
             return;
         }
 
-        var activeMenu = document.querySelector('.mobile-menu.active, .desktop-menu-slider.active');
+        var activeMenu = document.querySelector('.desktop-menu-slider.active');
         if (!activeMenu) {
             return;
         }
@@ -185,51 +151,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Mobile menu toggle - works for all instances
-        const mobileToggles = document.querySelectorAll('.mobile-menu-toggle');
-        const mobileMenus = document.querySelectorAll('.mobile-menu');
-        const body = document.body;
-
-        // Initialize aria-hidden
-        mobileMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
-
-        mobileToggles.forEach(function(mobileToggle, index) {
-            mobileToggle.addEventListener('click', function() {
-                mobileToggles.forEach(toggle => toggle.classList.toggle('active'));
-                mobileMenus.forEach(menu => menu.classList.toggle('active'));
-                body.classList.toggle('mobile-menu-open');
-
-                if (body.classList.contains('mobile-menu-open')) {
-                    mobileMenus.forEach(menu => {
-                        menu.setAttribute('aria-hidden', 'false');
-                        const firstMenuItem = menu.querySelector('a, button, input');
-                        if (firstMenuItem) {
-                            firstMenuItem.focus();
-                        }
-                    });
-                    document.addEventListener('keydown', trapFocus);
-                } else {
-                    mobileMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
-                    document.removeEventListener('keydown', trapFocus);
-                }
-            });
-        });
-
-        // Close mobile menu when clicking on a link - works for all instances
-        const mobileLinks = document.querySelectorAll('.mobile-menu a');
-        mobileLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
-                mobileToggles.forEach(toggle => toggle.classList.remove('active'));
-                mobileMenus.forEach(menu => menu.classList.remove('active'));
-                body.classList.remove('mobile-menu-open');
-                
-                mobileMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
-                document.removeEventListener('keydown', trapFocus);
-            });
-        });
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
         // Desktop menu toggle - works for all instances
         const desktopToggles = document.querySelectorAll('.desktop-menu-toggle');
         const desktopMenus = document.querySelectorAll('.desktop-menu-slider');
@@ -242,7 +163,12 @@
             desktopToggle.addEventListener('click', function() {
                 // // //
                 desktopToggles.forEach(toggle => toggle.classList.toggle('active'));
-                desktopMenus.forEach(menu => menu.classList.toggle('active'));
+                desktopMenus.forEach(menu => menu.style.display = 'block');
+                // add 1 second delay before toggling active class
+                setTimeout(function() {
+
+                    desktopMenus.forEach(menu => menu.classList.toggle('active'));
+                }, 10);
                 body.classList.toggle('mobile-menu-open');
 
                 if (body.classList.contains('mobile-menu-open')) {
@@ -321,6 +247,7 @@
             $bookingPopup.attr('aria-hidden', 'false');
             $bookingPopup.attr('role', 'dialog');
             $bookingPopup.attr('aria-modal', 'true');
+            $bookingPopup.attr('style', 'display: flex;');
             
             // Allow visibility transition before focus
             setTimeout(function() {
@@ -338,7 +265,7 @@
             $bookingPopup.attr('aria-hidden', 'true');
             $bookingPopup.removeAttr('role');
             $bookingPopup.removeAttr('aria-modal');
-            
+            $bookingPopup.attr('style', 'display: none;');
             document.removeEventListener('keydown', trapModalFocus);
             
             if (lastFocusedElement) {

@@ -17,7 +17,7 @@ $footer_popup = get_field('footer_popup', 'option');
 $footer_copy_styles = get_field('styling_settings_footer_copy_styles', 'option')['styling']['colour'];
 ?>
 
-<div class="booking_popup" id="open_popup" aria-hidden="true">
+<div class="booking_popup" id="open_popup" style="display: none;" aria-hidden="true">
     <div class="internals">
         <button class="close_btn" type="button" style="background: transparent; border: none; cursor: pointer;">
             ×
