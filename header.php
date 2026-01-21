@@ -196,7 +196,12 @@
                 body.classList.remove('mobile-menu-open');
                 
                 desktopMenus.forEach(menu => menu.setAttribute('aria-hidden', 'true'));
+                desktopMenus.forEach(menu => menu.style.display = 'none');
+
                 document.removeEventListener('keydown', trapFocus);
+
+                // put focus back on .desktop-menu-toggle
+                desktopToggles[0].focus();
             });
         });
     });
