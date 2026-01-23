@@ -50,10 +50,10 @@ $footer_copy_styles = get_field('styling_settings_footer_copy_styles', 'option')
                                     
                                     <?php elseif ($field['field_type'] === 'text' && $field['text']): ?>
                                         <p class="footer_text"><?php echo esc_html($field['text']); ?></p>
-                                    
                                     <?php elseif ($field['field_type'] === 'link' && $field['link']): ?>
                                         <a href="<?php echo esc_url($field['link']['url']); ?>"
                                            class="footer_link"
+                                           <?php if($field['aria_label']){ ?> aria-label="<?php echo $field['aria_label']; ?>" <?php } ?>
                                            <?php if ($field['link']['target']): ?>target="<?php echo esc_attr($field['link']['target']); ?>"<?php endif; ?>>
                                             <?php echo esc_html($field['link']['title']); ?>
                                         </a>

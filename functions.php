@@ -435,6 +435,11 @@ function output_acf_styling_css() {
             background-color: <?php echo esc_attr($footer_copy_styles['styling']['hover_color']); ?>;
         <?php endif; ?>
         }
+
+        footer a {
+            text-decoration: none;
+        }
+
     </style>
     <?php
 }

@@ -517,6 +517,12 @@ function my_register_fields() {
                                     ),
                                 ),
                             ),
+                            array(
+                                'key' => 'field_field_aria',
+                                'label' => 'Aria Label',
+                                'name' => 'aria_label',
+                                'type' => 'text',
+                            ),
                         ),
                     ),
                 ),
